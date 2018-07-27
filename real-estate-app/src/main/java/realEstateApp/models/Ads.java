@@ -10,15 +10,19 @@ public class Ads {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "description")
     private String description;
-//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+
+    //    @ManyToOne(optional = false, fetch = FetchType.LAZY)
 //    private User author;
     public Ads(){
 
     }
+
     public Ads( String title, String description, String author) {
 
         setTitle(title);
@@ -30,8 +34,6 @@ public class Ads {
     public Long getId() {
         return id;
     }
-
-
 
     public String getTitle() {
         return title;

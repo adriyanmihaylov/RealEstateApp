@@ -12,13 +12,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-@Column(name = "username")
+    @Column(name = "username")
     private String username;
-@Column(name = "password")
+
+    @Column(name = "password")
     private String passwordHash;
-@Column(name = "Firstname")
+    @Column(name = "FirstName")
     private String firstName;
-@Column(name = "lastName")
+    @Column(name = "LastName")
     private String lastName;
 
 //    @OneToMany(mappedBy = "author")

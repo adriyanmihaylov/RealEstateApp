@@ -10,6 +10,7 @@ public class Addresses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
     @Column(name = "name")
     private String name;
 

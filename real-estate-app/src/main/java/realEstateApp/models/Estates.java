@@ -22,6 +22,7 @@ public class Estates {
     private String title;
 //    private Type type;
     public Estates(){}
+
     public Estates(int price, int baths, int bedrooms, String title) {
         this.price = price;
         this.baths = baths;
