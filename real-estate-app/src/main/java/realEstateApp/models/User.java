@@ -1,5 +1,6 @@
 package realEstateApp.models;
 
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,11 +11,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+@Column(name = "username")
     private String username;
+@Column(name = "password")
     private String passwordHash;
+@Column(name = "Firstname")
     private String firstName;
-    private String secondName;
+@Column(name = "lastName")
+    private String lastName;
 
     @OneToMany(mappedBy = "author")
     private Set<Ads> userAds = new HashSet<>();
@@ -22,20 +26,17 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String firstName, String secondName) {
-        setId(id);
+    public User(String username, String firstName, String lastName) {
+
         setUsername(username);
         setFirstName(firstName);
-        setSecondName(secondName);
+        setLastName(lastName);
     }
 
     public Long getId() {
         return id;
     }
 
-    private void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -61,12 +62,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Set<Ads> getUserAds() {
@@ -83,6 +84,6 @@ public class User {
                 "id=" + id +
                 ", username= " + username +
                 ", passwordHash=" + passwordHash +
-                ", fullName=" + firstName + " " + secondName;
+                ", fullName=" + firstName + " " + lastName;
     }
 }
