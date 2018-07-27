@@ -1,12 +1,13 @@
 package realEstateApp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import realEstateApp.models.User;
 import realEstateApp.repositories.base.UserRepository;
 import realEstateApp.services.base.UserService;
 
 import java.util.List;
-
+@Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 

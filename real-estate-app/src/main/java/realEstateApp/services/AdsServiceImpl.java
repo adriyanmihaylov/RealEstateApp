@@ -1,11 +1,12 @@
 package realEstateApp.services;
 
+import org.springframework.stereotype.Service;
 import realEstateApp.models.Ads;
 import realEstateApp.repositories.base.AdsRepository;
 import realEstateApp.services.base.AdsService;
 
 import java.util.List;
-
+@Service
 public class AdsServiceImpl implements AdsService {
 
     private AdsRepository adsRepository;
