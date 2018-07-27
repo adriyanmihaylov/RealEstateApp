@@ -2,6 +2,7 @@ package realEstateApp.models;
 
 
 import javax.persistence.*;
+import javax.xml.ws.soap.Addressing;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 @Column(name = "username")
     private String username;
 @Column(name = "password")
@@ -20,20 +21,20 @@ public class User {
 @Column(name = "lastName")
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
-    private Set<Ads> userAds = new HashSet<>();
+//    @OneToMany(mappedBy = "author")
+//    private Set<Ads> userAds = new HashSet<>();
 
     public User() {
     }
 
-    public User(String username, String firstName, String lastName) {
-
+    public User(String username, String firstName, String lastName, String passwordHash) {
         setUsername(username);
         setFirstName(firstName);
         setLastName(lastName);
+        setPasswordHash(passwordHash);
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -70,13 +71,13 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Set<Ads> getUserAds() {
-        return userAds;
-    }
+//    public Set<Ads> getUserAds() {
+//        return userAds;
+//    }
 
-    public void setUserAds(Set<Ads> userAds) {
-        this.userAds = userAds;
-    }
+//    public void setUserAds(Set<Ads> userAds) {
+//        this.userAds = userAds;
+//    }
 
     @Override
     public String toString() {

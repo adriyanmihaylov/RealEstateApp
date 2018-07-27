@@ -14,17 +14,16 @@ public class Ads {
     private String title;
     @Column(name = "description")
     private String description;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User author;
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private User author;
     public Ads(){
 
     }
-    public Ads( String title, String description, User author) {
+    public Ads( String title, String description, String author) {
 
         setTitle(title);
         setDescription(description);
-        setAuthor(author);
+//        setAuthor(author);
         setDate(new Date());
     }
 
@@ -50,13 +49,13 @@ public class Ads {
         this.description = description;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
+//    public User getAuthor() {
+//        return author;
+//    }
+//
+//    public void setAuthor(User author) {
+//        this.author = author;
+//    }
 
     public Date getDate() {
         return date;
@@ -72,7 +71,7 @@ public class Ads {
     public String toString() {
         return "Ad: " +
                 "id= " + id +
-                ", author= " + author +
+                ", author= " + "author" +
                 ", title= " + title +
                 ", description= " + description +
                 ", date= " + date;
