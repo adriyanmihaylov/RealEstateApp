@@ -37,7 +37,15 @@ public class User {
                 String passwordHash, Ads ads) {
         ads.setAuthor(this);
         userAds.add(ads);
+        setUsername(username);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPasswordHash(passwordHash);
 
+    }
+
+    public User(String username, String firstName, String lastName,
+                String passwordHash) {
         setUsername(username);
         setFirstName(firstName);
         setLastName(lastName);
@@ -97,7 +105,6 @@ public class User {
             System.out.println("Add already exists for this user");
         }
     }
-
 
     @Override
     public String toString() {

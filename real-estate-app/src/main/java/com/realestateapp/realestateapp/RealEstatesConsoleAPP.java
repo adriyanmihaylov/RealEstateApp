@@ -25,8 +25,8 @@ public class RealEstatesConsoleAPP {
     }
 
     public static void main(String[] args) {
-       Session session =  factory.openSession();
-       session.beginTransaction();
+        Session session = factory.openSession();
+        session.beginTransaction();
 //
 
 //        Ads newAds = new Ads("Title1", "Description","Autor");
@@ -49,14 +49,15 @@ public class RealEstatesConsoleAPP {
 //        session.save(newUser);
 
 //
-        List <User> users = session.createQuery("FROM User" ).list();
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-        users.forEach(System.out::println);
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-        users.forEach(x -> x.getUserAds().forEach(System.out::println));
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-        session.getTransaction().commit();
-        session.close();
+//        List <User> users = session.createQuery("FROM User" ).list();
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+//        users.forEach(System.out::println);
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+//        users.forEach(x -> x.getUserAds().forEach(System.out::println));
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+//        session.getTransaction().commit();
+//        session.close();
+//    }
     }
 }
