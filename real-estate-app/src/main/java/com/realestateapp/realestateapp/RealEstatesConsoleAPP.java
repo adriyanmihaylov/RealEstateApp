@@ -6,6 +6,7 @@ import realEstateApp.models.*;
 
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.List;
 
 public class RealEstatesConsoleAPP {
     static SessionFactory factory;
@@ -25,14 +26,16 @@ public class RealEstatesConsoleAPP {
     public static void main(String[] args) {
        Session session =  factory.openSession();
        session.beginTransaction();
-
-        User newUser = new User("jany.drenchev@gmail.com", "Yani",
-               "Drencgev", "passs");
-        Ads newAds = new Ads("Title1", "Description","Autor");
-        Materials newMaterial = new Materials("Тухла");
-        session.save(newUser);
-        session.save(newAds);
-        session.save(newMaterial);
+//
+//        User newUser = new User("jany.drenchev@gmail.com", "Yani",
+//               "Drencgev", "passs");
+//        Ads newAds = new Ads("Title1", "Description","Autor");
+//        Materials newMaterial = new Materials("Тухла");
+//
+//        List<Estates> estates = session.createQuery("FROM estates").list();
+//        estates.forEach(System.out::println);
+        List <Estates> estates = session.createQuery("FROM Estates" ).list();
+        estates.forEach(System.out::println);
         session.getTransaction().commit();
         session.close();
     }

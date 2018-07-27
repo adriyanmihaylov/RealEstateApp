@@ -4,14 +4,18 @@ import javax.persistence.*;
 import java.lang.reflect.Type;
 
 @Entity
-@Table(name = "estates")
+@Table(name = "Estates")
 public class Estates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idEstates")
     private int id;
-
-//    private Addresses address;
-//    private Materials material;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "addressID")
+    private Addresses address;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "materialID")        
+    private Materials material;
     @Column(name = "price")
     private int price;
     @Column(name = "baths")
@@ -20,7 +24,11 @@ public class Estates {
     private int bedrooms;
     @Column(name = "title")
     private String title;
-//    private Type type;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "typeID")
+    private Type type;
+
+
     public Estates(){}
 
     public Estates(int price, int baths, int bedrooms, String title) {
@@ -38,9 +46,9 @@ public class Estates {
         return title;
     }
 
-//    public Addresses getAddress() {
-//        return address;
-//    }
+    public Addresses getAddress() {
+        return address;
+    }
 
 
     public int getBaths() {
@@ -67,13 +75,13 @@ public class Estates {
         this.price = price;
     }
 
-//    public Type getType() {
-//        return type;
-//    }
-//
-//    public Materials getMaterial() {
-//        return material;
-//    }
+    public Type getType() {
+        return type;
+    }
+
+    public Materials getMaterial() {
+        return material;
+    }
 
     public int getId() {
         return id;
@@ -86,10 +94,11 @@ public class Estates {
                 " Baths: %d," +
                 " Bedrooms: %d" +
                 " Type: %s" +
-                " Title: %s", getId(),
-                getPrice(),
+                " Title: %s",
+                getId(),getAddress(),
+                getMaterial(),getPrice(),
                 getBaths(),getBedrooms(),
-                getTitle());
+                getType(),getTitle());
 
     }
 }
