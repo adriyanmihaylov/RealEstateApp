@@ -3,10 +3,11 @@ package realEstateApp.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "types")
+@Table(name = "Types")
 public class Types {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idTypes")
     private int id;
     @Column(name = "name")
     private String name;
@@ -27,6 +28,6 @@ public class Types {
 
     @Override
     public String toString() {
-        return String.format("Id: %d, name: %s", id, getName());
+        return String.format("Type: %s", getName());
     }
 }

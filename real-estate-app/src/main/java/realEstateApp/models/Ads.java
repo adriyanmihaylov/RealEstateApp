@@ -9,6 +9,7 @@ public class Ads {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idAds")
     private Long id;
 
     @Column(name = "title")

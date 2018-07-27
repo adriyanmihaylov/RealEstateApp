@@ -19,7 +19,7 @@ public class RealEstatesConsoleAPP {
                 .addAnnotatedClass(Materials.class)
                 .addAnnotatedClass(Addresses.class)
                 .addAnnotatedClass(Estates.class)
-                .addAnnotatedClass(Type.class)
+                .addAnnotatedClass(Types.class)
                 .buildSessionFactory();
     }
 
@@ -30,12 +30,20 @@ public class RealEstatesConsoleAPP {
 //        User newUser = new User("jany.drenchev@gmail.com", "Yani",
 //               "Drencgev", "passs");
 //        Ads newAds = new Ads("Title1", "Description","Autor");
-//        Materials newMaterial = new Materials("Тухла");
+        Materials newMaterial = new Materials("Mainata mu");
+        session.save(newMaterial);
+        Types type = new Types("Kyshta");
+        session.save(type);
+        Addresses addresse = new Addresses("Orlandovci");
+        session.save(addresse);
+        Estates newEstate = new Estates(addresse,newMaterial,
+                15000, 3, 5,"KurKapan", type);
+       session.save(newEstate);
+
+
 //
-//        List<Estates> estates = session.createQuery("FROM estates").list();
+//        List <Types> estates = session.createQuery("FROM Types" ).list();
 //        estates.forEach(System.out::println);
-        List <Estates> estates = session.createQuery("FROM Estates" ).list();
-        estates.forEach(System.out::println);
         session.getTransaction().commit();
         session.close();
     }

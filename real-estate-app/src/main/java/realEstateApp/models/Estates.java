@@ -1,7 +1,6 @@
 package realEstateApp.models;
 
 import javax.persistence.*;
-import java.lang.reflect.Type;
 
 @Entity
 @Table(name = "Estates")
@@ -11,10 +10,10 @@ public class Estates {
     @Column(name = "idEstates")
     private int id;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "addressID")
+    @JoinColumn(name = "AddressId")
     private Addresses address;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "materialID")        
+    @JoinColumn(name = "materialId")
     private Materials material;
     @Column(name = "price")
     private int price;
@@ -25,17 +24,21 @@ public class Estates {
     @Column(name = "title")
     private String title;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "typeID")
-    private Type type;
+    @JoinColumn(name = "TypeID")
+    private Types type;
 
 
     public Estates(){}
 
-    public Estates(int price, int baths, int bedrooms, String title) {
+    public Estates(Addresses address,Materials material, int price, int baths, int bedrooms,
+                   String title, Types type) {
+        this.address = address;
+        this.material = material;
         this.price = price;
         this.baths = baths;
         this.bedrooms = bedrooms;
         this.title = title;
+        this.type = type;
     }
 
     public void setTitle(String title) {
@@ -75,7 +78,7 @@ public class Estates {
         this.price = price;
     }
 
-    public Type getType() {
+    public Types getType() {
         return type;
     }
 
