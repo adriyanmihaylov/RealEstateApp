@@ -17,18 +17,16 @@ public class Ads {
 
     @Column(name = "description")
     private String description;
-
-    //    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-//    private User author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserId")
+    private User author;
     public Ads(){
 
     }
 
-    public Ads( String title, String description, String author) {
-
+    public Ads( String title, String description) {
         setTitle(title);
         setDescription(description);
-//        setAuthor(author);
         setDate(new Date());
     }
 
@@ -52,13 +50,13 @@ public class Ads {
         this.description = description;
     }
 
-//    public User getAuthor() {
-//        return author;
-//    }
-//
-//    public void setAuthor(User author) {
-//        this.author = author;
-//    }
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     public Date getDate() {
         return date;
@@ -72,11 +70,14 @@ public class Ads {
 
     @Override
     public String toString() {
-        return "Ad: " +
+        return "Ad:" +
                 "id= " + id +
                 ", author= " + "author" +
                 ", title= " + title +
                 ", description= " + description +
-                ", date= " + date;
+                ", date= " + date +
+                "author = " + getAuthor()+
+                "date = " + getDate();
+
     }
 }
