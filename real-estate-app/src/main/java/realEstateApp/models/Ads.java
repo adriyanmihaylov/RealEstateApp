@@ -22,6 +22,7 @@ public class Ads {
         setTitle(title);
         setDescription(description);
         setAuthor(author);
+        setDate(new Date());
     }
 
     public Long getId() {
