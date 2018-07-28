@@ -1,10 +1,10 @@
-package realEstateApp.repositories;
+package com.realestateapp.realestateapp.realEstateApp.repositories;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import realEstateApp.models.User;
-import realEstateApp.repositories.base.UserRepository;
+import com.realestateapp.realestateapp.realEstateApp.models.User;
+import com.realestateapp.realestateapp.realEstateApp.repositories.base.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

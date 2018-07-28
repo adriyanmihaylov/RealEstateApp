@@ -1,10 +1,7 @@
-package realEstateApp.models;
+package com.realestateapp.realestateapp.realEstateApp.models;
 
 
 import javax.persistence.*;
-import javax.xml.ws.soap.Addressing;
-import java.beans.Expression;
-import java.sql.SQLOutput;
 import java.util.HashSet;
 import java.util.Set;
 

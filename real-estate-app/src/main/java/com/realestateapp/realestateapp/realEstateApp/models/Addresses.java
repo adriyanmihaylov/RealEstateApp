@@ -1,20 +1,24 @@
-package realEstateApp.models;
+package com.realestateapp.realestateapp.realEstateApp.models;
+
+
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Materials")
-public class Materials {
+@Table(name = "Addresses")
+public class Addresses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMaterials")
-    private int id;
+    @Column(name = "idAddresses")
+    private int Id;
+
+    @Column(name = "name")
     private String name;
 
-    public Materials(String name) {
+    public Addresses(String name) {
         this.name = name;
     }
-    public Materials(){}
+    public Addresses(){}
 
     public void setName(String name) {
         this.name = name;
@@ -26,6 +30,6 @@ public class Materials {
 
     @Override
     public String toString() {
-        return String.format("Material: %s", getName());
+        return name;
     }
 }

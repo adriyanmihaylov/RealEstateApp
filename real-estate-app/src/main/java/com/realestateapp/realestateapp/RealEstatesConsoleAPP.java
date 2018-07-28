@@ -2,7 +2,7 @@ package com.realestateapp.realestateapp;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import realEstateApp.models.*;
+import com.realestateapp.realestateapp.realEstateApp.models.*;
 
 import java.lang.reflect.Type;
 import java.util.HashSet;

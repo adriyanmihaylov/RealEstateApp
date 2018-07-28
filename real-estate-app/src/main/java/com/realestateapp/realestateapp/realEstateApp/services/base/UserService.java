@@ -1,6 +1,6 @@
-package realEstateApp.services.base;
+package com.realestateapp.realestateapp.realEstateApp.services.base;
 
-import realEstateApp.models.User;
+import com.realestateapp.realestateapp.realEstateApp.models.User;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package realEstateApp.repositories;
+package com.realestateapp.realestateapp.realEstateApp.repositories;
 
 import org.springframework.stereotype.Repository;
-import realEstateApp.models.Ads;
-import realEstateApp.repositories.base.AdsRepository;
+import com.realestateapp.realestateapp.realEstateApp.models.Ads;
+import com.realestateapp.realestateapp.realEstateApp.repositories.base.AdsRepository;
 
 import java.util.List;
 @Repository

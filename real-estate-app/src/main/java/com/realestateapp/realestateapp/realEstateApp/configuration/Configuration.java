@@ -1,9 +1,9 @@
-package realEstateApp.configuration;
+package com.realestateapp.realestateapp.realEstateApp.configuration;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import realEstateApp.models.Ads;
-import realEstateApp.models.User;
+import com.realestateapp.realestateapp.realEstateApp.models.Ads;
+import com.realestateapp.realestateapp.realEstateApp.models.User;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {

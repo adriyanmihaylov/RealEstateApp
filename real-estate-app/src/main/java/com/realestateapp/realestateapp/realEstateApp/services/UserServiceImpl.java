@@ -1,10 +1,10 @@
-package realEstateApp.services;
+package com.realestateapp.realestateapp.realEstateApp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import realEstateApp.models.User;
-import realEstateApp.repositories.base.UserRepository;
-import realEstateApp.services.base.UserService;
+import com.realestateapp.realestateapp.realEstateApp.models.User;
+import com.realestateapp.realestateapp.realEstateApp.repositories.base.UserRepository;
+import com.realestateapp.realestateapp.realEstateApp.services.base.UserService;
 
 import java.util.List;
 @Service

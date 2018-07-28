@@ -1,17 +1,15 @@
-package realEstateApp.controllers;
+package com.realestateapp.realestateapp.realEstateApp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import realEstateApp.models.User;
-import realEstateApp.services.base.UserService;
-
-import javax.jws.soap.SOAPBinding;
+import com.realestateapp.realestateapp.realEstateApp.models.User;
+import com.realestateapp.realestateapp.realEstateApp.services.base.UserService;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/users")
 public class UserController {
     private UserService service;
@@ -19,10 +17,10 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
-    @GetMapping("/")
-    public List<User> getAll(){
-       return service.findAll();
-    }
+//    @GetMapping("/")
+//    public List<User> getAll(){
+//        return service.findAll();
+//    }
     @GetMapping("/get")
     public User findById(@RequestParam(value = "id") String id){
         return service.findById(Long.parseLong(id));

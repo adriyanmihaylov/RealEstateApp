@@ -1,6 +1,6 @@
-package realEstateApp.repositories.base;
+package com.realestateapp.realestateapp.realEstateApp.repositories.base;
 
-import realEstateApp.models.Ads;
+import com.realestateapp.realestateapp.realEstateApp.models.Ads;
 
 import java.util.List;
 
