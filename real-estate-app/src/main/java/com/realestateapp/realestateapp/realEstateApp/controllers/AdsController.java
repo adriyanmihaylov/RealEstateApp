@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.realestateapp.realestateapp.realEstateApp.services.base.AdsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,8 +29,12 @@ public class AdsController {
     public Ads findById(@RequestParam(value = "id") String id){
         return adsService.findById(Long.parseLong(id));
     }
-    @GetMapping("/")
-    public String index(){
-        return "ads";
+    @PostMapping("/delete")
+    public void delete(@RequestParam(value = "id") String id){
+        adsService.deleteById(Long.parseLong(id));
     }
+//    @GetMapping("/")
+//    public String index(){
+//        return "ads";
+//    }
 }
