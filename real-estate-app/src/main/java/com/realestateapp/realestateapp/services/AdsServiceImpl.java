@@ -1,9 +1,9 @@
-package com.realestateapp.realestateapp.realEstateApp.services;
+package com.realestateapp.realestateapp.services;
 
 import org.springframework.stereotype.Service;
-import com.realestateapp.realestateapp.realEstateApp.models.Ads;
-import com.realestateapp.realestateapp.realEstateApp.repositories.base.AdsRepository;
-import com.realestateapp.realestateapp.realEstateApp.services.base.AdsService;
+import com.realestateapp.realestateapp.models.Ads;
+import com.realestateapp.realestateapp.repositories.base.AdsRepository;
+import com.realestateapp.realestateapp.services.base.AdsService;
 
 import java.util.List;
 @Service

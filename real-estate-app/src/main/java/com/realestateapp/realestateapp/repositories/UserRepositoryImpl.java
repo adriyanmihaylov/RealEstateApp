@@ -1,10 +1,10 @@
-package com.realestateapp.realestateapp.realEstateApp.repositories;
+package com.realestateapp.realestateapp.repositories;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import com.realestateapp.realestateapp.realEstateApp.models.User;
-import com.realestateapp.realestateapp.realEstateApp.repositories.base.UserRepository;
+import com.realestateapp.realestateapp.models.User;
+import com.realestateapp.realestateapp.repositories.base.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        List<User> users = null;
+        List<User> users = new ArrayList<>();
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             users = session.createQuery("from User").list();

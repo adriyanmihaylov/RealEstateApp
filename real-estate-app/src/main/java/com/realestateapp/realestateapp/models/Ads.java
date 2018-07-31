@@ -1,4 +1,4 @@
-package com.realestateapp.realestateapp.realEstateApp.models;
+package com.realestateapp.realestateapp.models;
 
 import javax.persistence.*;
 import java.util.Date;
