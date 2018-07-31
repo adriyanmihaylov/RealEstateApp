@@ -5,10 +5,7 @@ import com.realestateapp.realestateapp.realEstateApp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.realestateapp.realestateapp.realEstateApp.services.base.AdsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,20 +18,14 @@ public class AdsController {
     public AdsController(AdsService service) {
         this.adsService = service;
     }
-//        @GetMapping("/")
-//    public List<Ads> getAll(){
-//       return adsService.findAll();
-//        }
+
     @GetMapping("/get")
-    public Ads findById(@RequestParam(value = "id") String id){
-        return adsService.findById(Long.parseLong(id));
+    public Ads findById(@RequestParam(value = "id") String idString) {
+        return adsService.findById(Long.parseLong(idString));
     }
+
     @PostMapping("/delete")
-    public void delete(@RequestParam(value = "id") String id){
-        adsService.deleteById(Long.parseLong(id));
+    public void delete(@RequestParam(value = "id") String idString) {
+        adsService.deleteById(Long.parseLong(idString));
     }
-//    @GetMapping("/")
-//    public String index(){
-//        return "ads";
-//    }
 }

@@ -34,6 +34,5 @@ public class AdsRepositoryImpl implements AdsRepository {
 
     @Override
     public void deleteById(Long id) {
-
     }
 }

@@ -1,6 +1,5 @@
 package com.realestateapp.realestateapp.realEstateApp.models;
 
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,24 +7,28 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsers")
-    private int id;
+    private long id;
+
     @Column(name = "username")
     private String username;
 
     @Column(name = "password")
     private String passwordHash;
+
     @Column(name = "FirstName")
     private String firstName;
+
     @Column(name = "LastName")
     private String lastName;
-
-    @OneToMany(mappedBy = "author",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private Set<Ads> userAds = new HashSet<>();
+//
+//    @OneToMany(mappedBy = "author",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private Set<Ads> userAds = new HashSet<>();
 
     public User() {
     }
@@ -33,7 +36,7 @@ public class User {
     public User(String username, String firstName, String lastName,
                 String passwordHash, Ads ads) {
         ads.setAuthor(this);
-        userAds.add(ads);
+//        userAds.add(ads);
         setUsername(username);
         setFirstName(firstName);
         setLastName(lastName);
@@ -50,8 +53,8 @@ public class User {
 
     }
 
-    public int getId() {
-        return id;
+    public long getId() {
+        return this.id;
     }
 
 
@@ -87,21 +90,18 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Set<Ads> getUserAds() {
-        return userAds ;
-    }
 
-    public void setUserAds(Set<Ads> userAds) {
-        this.userAds = userAds;
-    }
-    public void addUserAds(Ads add) {
-        if (!userAds.contains(add)) {
-            userAds.add(add);
-        }
-        else{
-            System.out.println("Add already exists for this user");
-        }
-    }
+//    public void setUserAds(Set<Ads> userAds) {
+//        this.userAds = userAds;
+//    }
+//    public void addUserAds(Ads add) {
+//        if (!userAds.contains(add)) {
+//            userAds.add(add);
+//        }
+//        else{
+//            System.out.println("Add already exists for this user");
+//        }
+//    }
 
     @Override
     public String toString() {

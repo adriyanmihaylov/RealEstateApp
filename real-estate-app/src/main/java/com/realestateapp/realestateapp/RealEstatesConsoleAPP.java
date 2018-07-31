@@ -39,6 +39,7 @@ public class RealEstatesConsoleAPP {
 //        Estates newEstate = new Estates(addresse,newMaterial,
 //                15000, 3, 5,"KurKapan", type);
 //       session.save(newEstate);
+
 //        USER ADDING
 //        Set<Ads> ads = new HashSet<>();
 //        Ads newAdd = new Ads("Title2", "Description1");
@@ -56,8 +57,8 @@ public class RealEstatesConsoleAPP {
 //        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
 //        users.forEach(x -> x.getUserAds().forEach(System.out::println));
 //        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-//        session.getTransaction().commit();
-//        session.close();
+        session.getTransaction().commit();
+        session.close();
 //    }
     }
 }

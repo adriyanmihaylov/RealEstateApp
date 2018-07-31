@@ -18,12 +18,10 @@
         </property>
 
         <property name = "hibernate.connection.username">
-            root
+            user
         </property>
         <property name = "hibernate.connection.password">
-            99096549
+            123456
         </property>
-
-
     </session-factory>
 </hibernate-configuration>

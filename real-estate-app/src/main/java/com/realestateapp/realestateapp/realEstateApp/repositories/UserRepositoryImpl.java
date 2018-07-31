@@ -8,49 +8,49 @@ import com.realestateapp.realestateapp.realEstateApp.repositories.base.UserRepos
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private  SessionFactory factory;
-    public UserRepositoryImpl(SessionFactory factory){
+    private SessionFactory factory;
+
+    public UserRepositoryImpl(SessionFactory factory) {
         this.factory = factory;
     }
+
     @Override
     public List<User> findAll() {
         List<User> users = null;
-      try(Session session = factory.openSession()) {
-          session.beginTransaction();
-          users = session.createQuery("from User").list();
-          session.getTransaction().commit();
-      }
-      catch (Exception e){
-          e.printStackTrace();
-      }
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            users = session.createQuery("from User").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return users;
-
     }
 
     @Override
     public User findById(Long id) {
         User user = null;
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
             user = session.get(User.class, id);
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return user;
     }
 
     @Override
     public void create(User user) {
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

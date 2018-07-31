@@ -17,14 +17,16 @@ public class Ads {
 
     @Column(name = "description")
     private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserId")
     private User author;
-    public Ads(){
+
+    public Ads() {
 
     }
 
-    public Ads( String title, String description) {
+    public Ads(String title, String description) {
         setTitle(title);
         setDescription(description);
         setDate(new Date());
@@ -76,7 +78,7 @@ public class Ads {
                 ", title= " + title +
                 ", description= " + description +
                 ", date= " + date +
-                "author = " + getAuthor()+
+                "author = " + getAuthor() +
                 "date = " + getDate();
 
     }

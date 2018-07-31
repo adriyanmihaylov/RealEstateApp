@@ -1,7 +1,5 @@
 package com.realestateapp.realestateapp.realEstateApp.models;
 
-
-
 import javax.persistence.*;
 
 @Entity
