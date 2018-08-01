@@ -7,6 +7,7 @@ import com.realestateapp.realestateapp.repositories.base.UserRepository;
 import com.realestateapp.realestateapp.services.base.UserService;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User edit(User user) {
-        return userRepository.edit(user);
+    public void edit(User user) {
+        userRepository.edit(user);
     }
 
     @Override

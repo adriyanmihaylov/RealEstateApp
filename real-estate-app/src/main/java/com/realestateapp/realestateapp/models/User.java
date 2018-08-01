@@ -43,13 +43,11 @@ public class User {
 
     }
 
-    public User(String username, String firstName, String lastName,
-                String passwordHash) {
+    public User(String username,String passwordHash, String firstName, String lastName) {
         setUsername(username);
+        setPasswordHash(passwordHash);
         setFirstName(firstName);
         setLastName(lastName);
-        setPasswordHash(passwordHash);
-
     }
 
     public long getId() {
