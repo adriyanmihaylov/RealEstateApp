@@ -11,7 +11,7 @@ public interface AdsRepository {
 
     void create(Ads newAd);
 
-    Ads edit(Ads ad);
+    void edit(Ads ad);
 
     void deleteById(Long id) throws Exception;
 }

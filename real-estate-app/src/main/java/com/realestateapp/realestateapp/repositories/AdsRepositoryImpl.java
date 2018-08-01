@@ -70,9 +70,18 @@ public class AdsRepositoryImpl implements AdsRepository {
     }
 
     @Override
-    public Ads edit(Ads ad) {
+    public void edit(Ads ad) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+//            Ads toBeUpdate = session.get(Ads.class,ad.getId());
+            session.update(ad);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERROR");
+        }
+        System.out.println("Updated Successfully");
 
-        return ad;
     }
 
     @Override

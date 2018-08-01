@@ -21,7 +21,7 @@ public class AdsController {
         this.adsService = service;
     }
     //WORKING
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public List<Ads> findAll() {
         return adsService.findAll();
     }
@@ -42,7 +42,7 @@ public class AdsController {
                 return new ResponseEntity<>("Not FOUND", HttpStatus.NOT_FOUND);
             }
     }
-    //WORKING TRY IN THE BROWSER with http://localhost:8080/api/ads/create?title=AddNum1 &description=Test1
+    //WORKING TRY WITH POST with http://localhost:8080/api/ads/create?title=AddNum1&description=Test1
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestParam("title") String title,
                                     @RequestParam("description") String description){
@@ -55,6 +55,27 @@ public class AdsController {
         }
         catch (Exception e){
             return new ResponseEntity<>("Data already exists", HttpStatus.NOT_FOUND);
+        }
+    }
+    //WORKING TRY WITH PUT METHOD with http://localhost:8080/api/ads/update?id=9&title=Ebahgo&description=MamatasiEEBALO
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@RequestParam("id") long id,
+                                    @RequestParam( value = "title", required = false) String title,
+                                    @RequestParam(value = "description", required = false) String description){
+        //TODO Validation
+        try {
+            Ads addToUpdate = adsService.findById(id);
+            if (description!=null) {
+                addToUpdate.setDescription(description);
+            }
+            if (title!=null) {
+                addToUpdate.setTitle(title);
+            }
+            adsService.edit(addToUpdate);
+            return new ResponseEntity<>("Data updated successfully", HttpStatus.ACCEPTED);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>("Data does not exists exists", HttpStatus.NOT_FOUND);
         }
     }
 }

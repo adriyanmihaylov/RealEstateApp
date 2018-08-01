@@ -37,8 +37,8 @@ public class AdsServiceImpl implements AdsService {
     }
 
     @Override
-    public Ads edit(Ads ad) {
-        return adsRepository.edit(ad);
+    public void edit(Ads ad) {
+        adsRepository.edit(ad);
     }
 
     @Override

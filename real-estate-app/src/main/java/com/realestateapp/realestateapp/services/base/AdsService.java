@@ -13,7 +13,7 @@ public interface AdsService {
 
     void create(Ads ads);
 
-    Ads edit(Ads ads);
+    void edit(Ads ads);
 
     void deleteById(Long id) throws Exception;
 }
