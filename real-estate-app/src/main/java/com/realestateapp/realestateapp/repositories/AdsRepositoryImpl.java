@@ -1,17 +1,26 @@
 package com.realestateapp.realestateapp.repositories;
 
+import javassist.NotFoundException;
+import org.apache.catalina.connector.Response;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.omg.CORBA.NO_RESOURCES;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import com.realestateapp.realestateapp.models.Ads;
 import com.realestateapp.realestateapp.repositories.base.AdsRepository;
 
+import javax.servlet.ServletOutputStream;
+import javax.xml.ws.http.HTTPException;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
+
 @Repository
 public class AdsRepositoryImpl implements AdsRepository {
-    private SessionFactory factory;
-
+    private static SessionFactory factory ;
     public AdsRepositoryImpl(SessionFactory factory) {
         this.factory = factory;
     }
@@ -30,10 +39,7 @@ public class AdsRepositoryImpl implements AdsRepository {
         return allAds;
     }
 
-    @Override
-    public List<Ads> findLatest5() {
-        return null;
-    }
+
 
     @Override
     public Ads findById(Long id) {
@@ -50,15 +56,17 @@ public class AdsRepositoryImpl implements AdsRepository {
     }
 
     @Override
-    public Ads create(Ads newAd) {
+    public void create(Ads newAd) {
+        //TODO Validation
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             session.save(newAd);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("ERROR");
         }
-        return newAd;
+        System.out.println("Created Successfully");
     }
 
     @Override
@@ -68,18 +76,19 @@ public class AdsRepositoryImpl implements AdsRepository {
     }
 
     @Override
-    public String deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         Ads ad = findById(id);
         if (ad != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();
                 session.delete(ad);
                 session.getTransaction().commit();
-                return "The add was successfully deleted!";
+                System.out.println( "The add was successfully deleted!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return "There is no such ad!";
+        System.out.println( "There is no such ad!");
+        throw new Exception();
     }
 }

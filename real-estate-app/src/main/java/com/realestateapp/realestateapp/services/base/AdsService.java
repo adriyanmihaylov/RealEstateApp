@@ -11,9 +11,9 @@ public interface AdsService {
 
     Ads findById(Long id);
 
-    Ads create(Ads ads);
+    void create(Ads ads);
 
     Ads edit(Ads ads);
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws Exception;
 }

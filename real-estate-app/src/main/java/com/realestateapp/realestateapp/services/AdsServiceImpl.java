@@ -19,10 +19,11 @@ public class AdsServiceImpl implements AdsService {
     public List<Ads> findAll() {
         return adsRepository.findAll();
     }
-
+//TODO Find the latest five, not in the repository. Here is the logic
     @Override
     public List<Ads> findLatest5() {
-        return adsRepository.findLatest5();
+        List<Ads> latestFive = adsRepository.findAll();
+        return latestFive;
     }
 
     @Override
@@ -31,8 +32,8 @@ public class AdsServiceImpl implements AdsService {
     }
 
     @Override
-    public Ads create(Ads ad) {
-        return adsRepository.create(ad);
+    public void create(Ads ad) {
+        adsRepository.create(ad);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class AdsServiceImpl implements AdsService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         adsRepository.deleteById(id);
     }
 }

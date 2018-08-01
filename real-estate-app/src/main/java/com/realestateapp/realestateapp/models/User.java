@@ -22,6 +22,7 @@ public class User {
 
     @Column(name = "LastName")
     private String lastName;
+    //TODO Add this functionality
 //
 //    @OneToMany(mappedBy = "author",
 //            cascade = CascadeType.ALL,
@@ -33,7 +34,7 @@ public class User {
 
     public User(String username, String firstName, String lastName,
                 String passwordHash, Ads ads) {
-        ads.setAuthor(this);
+//        ads.setAuthor(this);
 //        userAds.add(ads);
         setUsername(username);
         setFirstName(firstName);

@@ -4,7 +4,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import com.realestateapp.realestateapp.models.Ads;
 import com.realestateapp.realestateapp.models.User;
-
 @org.springframework.context.annotation.Configuration
 public class Configuration {
 
