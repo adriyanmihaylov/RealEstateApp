@@ -77,7 +77,7 @@ public class UserRepositoryImpl implements UserRepository {
                 session.beginTransaction();
                 session.update(user);
                 session.getTransaction().commit();
-                System.out.println("User" + user.getUsername() + " updated successfully");
+                System.out.println("User: " + user.getUsername() + " updated successfully");
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();

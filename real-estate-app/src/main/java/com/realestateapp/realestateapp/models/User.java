@@ -8,7 +8,7 @@ public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsers")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "username")
@@ -22,6 +22,10 @@ public class User implements Comparable<User>{
 
     @Column(name = "LastName")
     private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
     //TODO Add this functionality
 //
 //    @OneToMany(mappedBy = "author",
@@ -32,20 +36,10 @@ public class User implements Comparable<User>{
     public User() {
     }
 
-    public User(String username, String firstName, String lastName,
-                String passwordHash, Post post) {
-//        post.setAuthor(this);
-//        userAds.add(post);
+    public User(String username,String password,String email,String firstName, String lastName) {
         setUsername(username);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPasswordHash(passwordHash);
-
-    }
-
-    public User(String username,String passwordHash, String firstName, String lastName) {
-        setUsername(username);
-        setPasswordHash(passwordHash);
+        setPasswordHash(password);
+        setEmail(email);
         setFirstName(firstName);
         setLastName(lastName);
     }
@@ -69,6 +63,14 @@ public class User implements Comparable<User>{
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getFirstName() {
@@ -106,6 +108,7 @@ public class User implements Comparable<User>{
                 "id=" + id +
                 ", username= " + username +
                 ", passwordHash=" + passwordHash +
+                ", email=" + email +
                 ", fullName=" + firstName + " " + lastName;
     }
 

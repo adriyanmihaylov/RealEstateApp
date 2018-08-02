@@ -39,15 +39,16 @@ public class UserController {
     }
 
     /**
-     * http://localhost:8080/api/users/create?username=TestUser&password=123456&firstName=TestFirstName&lastName=TestSecondName
+     * http://localhost:8080/api/users/create?username=TestUser&password=123456&email=testUser@gmail.com&firstName=TestFirstName&lastName=TestSecondName
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestParam("username") String username,
                                     @RequestParam("password") String password,
+                                    @RequestParam("email") String email,
                                     @RequestParam("firstName") String firstName,
                                     @RequestParam("lastName") String lastName) {
         try {
-            User user = new User(username, password, firstName, lastName);
+            User user = new User(username, password,email, firstName, lastName);
             if (service.create(user)) {
                 return new ResponseEntity<>("User created successfully", HttpStatus.ACCEPTED);
             }
@@ -63,6 +64,7 @@ public class UserController {
      */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestParam("id") String id,
+                                    @RequestParam(value = "email", required = false) String email,
                                     @RequestParam(value = "firstName", required = false) String firstName,
                                     @RequestParam(value = "lastName", required = false) String lastName) {
         try {
@@ -70,6 +72,10 @@ public class UserController {
 
             if (user == null) {
                 return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            }
+
+            if(email != null) {
+                user.setEmail(email);
             }
 
             if (firstName != null) {
