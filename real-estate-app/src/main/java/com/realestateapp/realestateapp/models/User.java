@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +27,15 @@ public class User {
 //    @OneToMany(mappedBy = "author",
 //            cascade = CascadeType.ALL,
 //            orphanRemoval = true)
-//    private Set<Ads> userAds = new HashSet<>();
+//    private Set<Post> userAds = new HashSet<>();
 
     public User() {
     }
 
     public User(String username, String firstName, String lastName,
-                String passwordHash, Ads ads) {
-//        ads.setAuthor(this);
-//        userAds.add(ads);
+                String passwordHash, Post post) {
+//        post.setAuthor(this);
+//        userAds.add(post);
         setUsername(username);
         setFirstName(firstName);
         setLastName(lastName);
@@ -88,10 +88,10 @@ public class User {
     }
 
 
-//    public void setUserAds(Set<Ads> userAds) {
+//    public void setUserAds(Set<Post> userAds) {
 //        this.userAds = userAds;
 //    }
-//    public void addUserAds(Ads add) {
+//    public void addUserAds(Post add) {
 //        if (!userAds.contains(add)) {
 //            userAds.add(add);
 //        }
@@ -107,5 +107,21 @@ public class User {
                 ", username= " + username +
                 ", passwordHash=" + passwordHash +
                 ", fullName=" + firstName + " " + lastName;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object != null && object instanceof User) {
+            User user = (User) object;
+            return this.getUsername().equals(user.getUsername());
+        }
+
+        return false;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getUsername().compareTo(o.getUsername());
     }
 }

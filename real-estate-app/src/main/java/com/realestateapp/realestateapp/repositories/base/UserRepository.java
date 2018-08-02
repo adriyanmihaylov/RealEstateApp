@@ -5,13 +5,14 @@ import com.realestateapp.realestateapp.models.User;
 import java.util.List;
 
 public interface UserRepository {
-    List<User> findAll();
+    List<User> getAll();
 
     User findById(Long id);
 
-    void create(User user);
+   boolean create(User user);
 
-    void edit(User user);
+    boolean update(User user);
 
-    void deleteById(Long id);
+    boolean deleteById(long id);
+
 }

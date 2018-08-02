@@ -3,18 +3,18 @@ package com.realestateapp.realestateapp.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Materials")
-public class Materials {
+@Table(name = "Material")
+public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idMaterials")
     private int id;
     private String name;
 
-    public Materials(String name) {
+    public Material(String name) {
         this.name = name;
     }
-    public Materials(){}
+    public Material(){}
 
     public void setName(String name) {
         this.name = name;

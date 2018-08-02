@@ -9,20 +9,27 @@ public class Estates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEstates")
     private int id;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AddressId")
-    private Addresses address;
+    private Address address;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "materialId")
-    private Materials material;
+    private Material material;
+
     @Column(name = "price")
     private int price;
+
     @Column(name = "baths")
     private int baths;
+
     @Column(name = "bedrooms")
     private int bedrooms;
+
     @Column(name = "title")
     private String title;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TypeID")
     private Types type;
@@ -30,7 +37,7 @@ public class Estates {
 
     public Estates(){}
 
-    public Estates(Addresses address,Materials material, int price, int baths, int bedrooms,
+    public Estates(Address address, Material material, int price, int baths, int bedrooms,
                    String title, Types type) {
         this.address = address;
         this.material = material;
@@ -49,7 +56,7 @@ public class Estates {
         return title;
     }
 
-    public Addresses getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -82,7 +89,7 @@ public class Estates {
         return type;
     }
 
-    public Materials getMaterial() {
+    public Material getMaterial() {
         return material;
     }
 

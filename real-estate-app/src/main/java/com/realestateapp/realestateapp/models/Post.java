@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Ads")
-public class Ads {
+@Table(name = "Аds")
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAds")
-    private Long id;
+    private long id;
 
     @Column(name = "title")
     private String title;
@@ -26,17 +26,17 @@ public class Ads {
 //    @JoinColumn(name = "UserId")
 //    private User author;
 
-    public Ads() {
+    public Post() {
 
     }
 
-    public Ads(String title, String description) {
+    public Post(String title, String description) {
         setTitle(title);
         setDescription(description);
         setDate(new Date());
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -79,11 +79,9 @@ public class Ads {
     public String toString() {
         return "Ad:" +
                 "id= " + id +
-                ", author= " + "author" +
                 ", title= " + title +
                 ", description= " + description +
                 ", date= " + date +
-                "author = " +
                 "date = " + getDate();
 
     }

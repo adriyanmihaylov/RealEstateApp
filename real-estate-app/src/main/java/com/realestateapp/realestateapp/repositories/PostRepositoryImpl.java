@@ -1,86 +1,93 @@
 package com.realestateapp.realestateapp.repositories;
 
-import com.realestateapp.realestateapp.models.Addresses;
-import com.realestateapp.realestateapp.repositories.base.AddressesRepository;
+import com.realestateapp.realestateapp.models.Post;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import com.realestateapp.realestateapp.repositories.base.PostRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Repository
-public class AddressesRepositoryImpl<T> implements AddressesRepository {
-    private SessionFactory factory;
-    AddressesRepositoryImpl(SessionFactory factory){
+public class PostRepositoryImpl implements PostRepository {
+    private static SessionFactory factory;
+
+    public PostRepositoryImpl(SessionFactory factory) {
         this.factory = factory;
     }
 
     @Override
-    public List<Addresses> listAll() {
-        List<Addresses> allAddresses = new ArrayList<>();
+    public List<Post> findAll() {
+        List<Post> allPosts = new ArrayList<>();
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            allAddresses= session.createQuery("FROM Addresses").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return allAddresses;
-    }
-
-    @Override
-    public Addresses findById(int id) {
-        Addresses address = null;
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            address = session.get(Addresses.class, id);
+            allPosts = session.createQuery("from Post").list();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return address;
+        return allPosts;
     }
 
-    @Override
-    public void create(Addresses address) throws Exception {
-        //TODO validation
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            session.save(address);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
 
     @Override
-    public void update(Addresses addresses) {
+    public Post findById(long id) {
+        Post post = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            session.update(addresses);
+            post = session.get(Post.class, id);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ERROR editing the address a problem in the DB");
         }
-        System.out.println("Address updated Successfully");
+
+        return post;
     }
 
     @Override
-    public void delete(int id) {
-        Addresses address = findById(id);
-        if (address != null) {
+    public void create(Post newPost) {
+        //TODO Validation
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.save(newPost);
+            session.getTransaction().commit();
+            System.out.println("Post was created Successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERROR");
+        }
+    }
+
+    @Override
+    public void update(Post post) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.update(post);
+            session.getTransaction().commit();
+            System.out.println("Updated Successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERROR");
+        }
+    }
+
+    @Override
+    public void deleteById(long id) throws Exception {
+        Post post = findById(id);
+        if (post != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();
-                session.delete(address);
+                session.delete(id);
                 session.getTransaction().commit();
-                System.out.println("The address was successfully deleted!");
+                System.out.println("The 'post' was successfully deleted!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            System.out.println("There is no such post!");
+            throw new Exception();
         }
-        System.out.println("ERROR editing the address a problem in the DB");
     }
 }
