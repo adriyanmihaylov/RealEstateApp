@@ -52,6 +52,26 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@RequestParam("id") long id,
+                                    @RequestParam(value = "username") String username,
+                                    @RequestParam(value = "firstName", required = false) String firstName,
+                                    @RequestParam(value = "lastName", required = false) String lastName) {
+        try {
+            User user = service.findById(id);
+            if (firstName != null) {
+                user.setFirstName(firstName);
+            }
+            if (lastName != null) {
+                user.setLastName(lastName);
+            }
+
+            return new ResponseEntity<>("User updated successfully", HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("User does not exits", HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteById(@RequestParam("id") String idString) {
         try {
