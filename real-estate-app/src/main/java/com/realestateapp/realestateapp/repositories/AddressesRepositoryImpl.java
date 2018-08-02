@@ -4,10 +4,11 @@ import com.realestateapp.realestateapp.models.User;
 import com.realestateapp.realestateapp.repositories.base.GenericRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     private SessionFactory factory;
 
