@@ -30,4 +30,13 @@ public class Addresses {
     public String toString() {
         return name;
     }
+
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 }

@@ -53,11 +53,9 @@ public class AdsController {
 
     //WORKING TRY WITH POST with http://localhost:8080/api/ads/create?title=AddNum1&description=Test1
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestParam("title") String title,@RequestParam("description") String description){
+    public ResponseEntity<?> create(@RequestParam("title") String title,
+                                    @RequestParam("description") String description){
        // TODO Validation
-
-
-                                    @RequestParam("description") String description) {
         //TODO Validation
 
         try {

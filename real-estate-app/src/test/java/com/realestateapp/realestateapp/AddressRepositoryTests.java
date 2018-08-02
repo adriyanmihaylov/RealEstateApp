@@ -1,5 +1,4 @@
 package com.realestateapp.realestateapp;
 
-class RealEstatesConsoleAPP{
-
+public class AddressRepositoryTests {
 }
