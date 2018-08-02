@@ -46,7 +46,7 @@ public class AdsController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestParam("title") String title,
                                     @RequestParam("description") String description){
-        //TODO Validation
+       // TODO Validation
 
         try {
             Ads newAdd = new Ads(title, description);

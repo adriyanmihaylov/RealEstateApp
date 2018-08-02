@@ -73,7 +73,6 @@ public class AdsRepositoryImpl implements AdsRepository {
     public void edit(Ads ad) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-//            Ads toBeUpdate = session.get(Ads.class,ad.getId());
             session.update(ad);
             session.getTransaction().commit();
         } catch (Exception e) {
