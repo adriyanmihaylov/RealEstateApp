@@ -56,11 +56,31 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User edit(User user) {
-        return null;
+    public void edit(User user) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERROR editing the user");
+        }
+        System.out.println("User updated Successfully");
     }
 
     @Override
     public void deleteById(Long id) {
+        User user = findById(id);
+        if (user != null) {
+            try (Session session = factory.openSession()) {
+                session.beginTransaction();
+                session.delete(user);
+                session.getTransaction().commit();
+                System.out.println("The user was successfully deleted!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("There is no such user!");
     }
 }
