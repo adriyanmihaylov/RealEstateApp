@@ -5,13 +5,13 @@ import com.realestateapp.realestateapp.models.Post;
 import java.util.List;
 
 public interface PostRepository {
-    List<Post> findAll();
+    List<Post> getAll();
 
     Post findById(long id);
 
-    void create(Post newAd);
+    boolean create(Post newAd);
 
-    void update(Post ad);
+    boolean update(Post ad);
 
-    void deleteById(long id) throws Exception;
+    boolean deleteById(long id);
 }

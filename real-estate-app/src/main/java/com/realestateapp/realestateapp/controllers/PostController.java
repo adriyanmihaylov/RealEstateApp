@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.realestateapp.realestateapp.services.base.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,19 +36,24 @@ public class PostController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return ad;
     }
 
     //WORKING TRY WITH POST with http://localhost:8080/api/posts/create?title=AddNum1&description=Test1
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestParam("title") String title,
-                                    @RequestParam("description") String description) {
+                                    @RequestParam(value = "description", required = false) String description) {
+
+        Post post = new Post(title, description);
         try {
-            Post newAd = new Post(title, description);
-            service.create(newAd);
-            return new ResponseEntity<>("Data created successfully", HttpStatus.ACCEPTED);
+            if (service.create(post)) {
+                return new ResponseEntity<>("Post created successfully", HttpStatus.ACCEPTED);
+            }
+
+            return new ResponseEntity<>("Post already exists", HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>("Data already exists", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -58,36 +62,36 @@ public class PostController {
     public ResponseEntity<?> update(@RequestParam("id") String idString,
                                     @RequestParam(value = "title", required = false) String title,
                                     @RequestParam(value = "description", required = false) String description) {
-        //TODO Validation
+
         try {
-            Post addToUpdate = service.findById(Long.parseLong(idString));
+            Post post = service.findById(Long.parseLong(idString));
+
+            if (post == null) {
+                return new ResponseEntity<>("Post not found", HttpStatus.NOT_FOUND);
+            }
+
             if (description != null) {
-                addToUpdate.setDescription(description);
+                post.setDescription(description);
+                service.update(post);
             }
-            if (title != null) {
-                addToUpdate.setTitle(title);
-            }
-            service.update(addToUpdate);
-            return new ResponseEntity<>("Data updated successfully", HttpStatus.ACCEPTED);
+
+            return new ResponseEntity<>("Post updated successfully", HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Data does not exists", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     //WORKING, try with POSTMAN or CURL REQUEST
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteById(@RequestParam("id") String idString) {
-
-        //TODO (not sure) check if post is null (in repository we are checking that)
         try {
-            service.deleteById(Long.parseLong(idString));
-            return new ResponseEntity<>("Data deleted successfully", HttpStatus.ACCEPTED);
+            if (service.deleteById(Long.parseLong(idString))) {
+                return new ResponseEntity<>("Post deleted successfully", HttpStatus.ACCEPTED);
+            } else {
+                return new ResponseEntity<>("Post NOT FOUND! ID=" + idString, HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>("Not FOUND", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-    @RequestMapping(value = "/latest5",method = RequestMethod.GET)
-    public List<Post> latest5(){
-        return service.findLatest5();
     }
 }

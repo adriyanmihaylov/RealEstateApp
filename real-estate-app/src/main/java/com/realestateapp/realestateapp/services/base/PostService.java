@@ -11,9 +11,9 @@ public interface PostService {
 
     Post findById(long id);
 
-    void create(Post post);
+    boolean create(Post post);
 
-    void update(Post post);
+    boolean update(Post post);
 
-    void deleteById(long id) throws Exception;
+    boolean deleteById(long id) throws Exception;
 }

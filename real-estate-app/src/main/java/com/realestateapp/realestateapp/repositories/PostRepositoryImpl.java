@@ -1,6 +1,8 @@
 package com.realestateapp.realestateapp.repositories;
 
 import com.realestateapp.realestateapp.models.Post;
+import com.realestateapp.realestateapp.models.User;
+import com.realestateapp.realestateapp.repositories.base.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -18,11 +20,11 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> findAll() {
+    public List<Post> getAll() {
         List<Post> allPosts = new ArrayList<>();
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            allPosts = session.createQuery("from Post").list();
+            allPosts = session.createQuery("FROM Post").list();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,47 +49,51 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public void create(Post newPost) {
-        //TODO Validation
+    public boolean create(Post newPost) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             session.save(newPost);
             session.getTransaction().commit();
-            System.out.println("Post was created Successfully");
+            System.out.println("CREATED: Post Id:" + newPost.getId());
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ERROR");
+            System.out.println("An error occurred while trying to CREATE post!");
         }
+
+        return false;
     }
 
     @Override
-    public void update(Post post) {
+    public boolean update(Post post) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             session.update(post);
             session.getTransaction().commit();
-            System.out.println("Updated Successfully");
+            System.out.println("UPDATED: Post Id:"+ post.getId());
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ERROR");
+            System.out.println("An error occurred while trying to UPDATE post!");
         }
+
+        return false;
     }
 
     @Override
-    public void deleteById(long id) throws Exception {
+    public boolean deleteById(long id) {
         Post post = findById(id);
         if (post != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();
                 session.delete(id);
                 session.getTransaction().commit();
-                System.out.println("The 'post' was successfully deleted!");
+                System.out.println("DELETED: Post Id:"+ post.getId());
+                return true;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("There is no such post!");
-            throw new Exception();
         }
+        return false;
     }
 }
