@@ -1,7 +1,5 @@
 package com.realestateapp.realestateapp.models;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,6 +18,7 @@ public class Post {
     @Column(name = "Description")
     private String description;
 
+<<<<<<< HEAD
 //TODO add user functionality
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -63,15 +62,6 @@ public class Post {
     public void setDescription(String description) {
         this.description = description;
     }
-    //TODO:NOT WORKING WITH USERS
-//
-//    public User getAuthor() {
-//        return author;
-//    }
-//
-//    public void setAuthor(User author) {
-//        this.author = author;
-//    }
 
     public Date getDate() {
         return date;

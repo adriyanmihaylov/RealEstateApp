@@ -61,7 +61,7 @@ public class UserRepositoryImpl implements UserRepository {
             session.save(user);
             session.getTransaction().commit();
 
-            System.out.println("User: " + user.getUsername() + " created successfully!");
+            System.out.println("CREATED User Id: " + user.getId() + " username:" + user.getUsername());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class UserRepositoryImpl implements UserRepository {
                 session.beginTransaction();
                 session.update(user);
                 session.getTransaction().commit();
-                System.out.println("User: " + user.getUsername() + " updated successfully");
+                System.out.println("UPDATED: User: " + user.getUsername());
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -96,7 +96,7 @@ public class UserRepositoryImpl implements UserRepository {
                 session.beginTransaction();
                 session.delete(user);
                 session.getTransaction().commit();
-                System.out.println("User id: " + user.getId() + " username: " + user.getUsername() + " was successfully deleted!");
+                System.out.println("DELETED User Id:" + user.getId() + " username: " + user.getUsername());
 
                 return true;
             } catch (Exception e) {
@@ -104,7 +104,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
         }
 
-        System.out.println("User with id: " + id + " was not deleted!");
+        System.out.println("User with id: " + id + " wasn't found!");
         return false;
     }
 }

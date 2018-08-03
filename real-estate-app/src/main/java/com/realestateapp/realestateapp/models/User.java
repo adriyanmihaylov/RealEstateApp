@@ -50,7 +50,6 @@ public class User implements Comparable<User>{
         return this.id;
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -91,6 +90,7 @@ public class User implements Comparable<User>{
         this.lastName = lastName;
     }
 
+<<<<<<< HEAD
     public void addUserAds(Post add) {
         if (!userAds.contains(add)) {
             userAds.add(add);

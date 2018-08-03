@@ -48,7 +48,7 @@ public class UserController {
                                     @RequestParam("firstName") String firstName,
                                     @RequestParam("lastName") String lastName) {
         try {
-            User user = new User(username, password,email, firstName, lastName);
+            User user = new User(username, password, email, firstName, lastName);
             if (service.create(user)) {
                 return new ResponseEntity<>("User created successfully", HttpStatus.ACCEPTED);
             }
