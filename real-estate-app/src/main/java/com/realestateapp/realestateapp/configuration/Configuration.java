@@ -2,7 +2,7 @@ package com.realestateapp.realestateapp.configuration;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import com.realestateapp.realestateapp.models.Ads;
+import com.realestateapp.realestateapp.models.Post;
 import com.realestateapp.realestateapp.models.User;
 @org.springframework.context.annotation.Configuration
 public class Configuration {
@@ -14,7 +14,7 @@ public class Configuration {
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Ads.class)
+                .addAnnotatedClass(Post.class)
                 .buildSessionFactory();
     }
 }

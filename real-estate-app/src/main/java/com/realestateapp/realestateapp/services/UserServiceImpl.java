@@ -19,29 +19,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.getAll();
     }
 
     @Override
-    public User findById(Long id) {
-        User user = userRepository.findById(id);
-        System.out.println(user);
-
+    public User findById(long id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public void create(User user) {
-        userRepository.create(user);
+    public boolean create(User user) {
+        return userRepository.create(user);
     }
 
     @Override
-    public void edit(User user) {
-        userRepository.edit(user);
+    public boolean update(User user) {
+        return userRepository.update(user);
     }
 
     @Override
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
+    public boolean deleteById(long id) {
+        return userRepository.deleteById(id);
     }
 }
