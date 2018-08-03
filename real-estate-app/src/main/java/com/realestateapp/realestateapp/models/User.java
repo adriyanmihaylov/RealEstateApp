@@ -1,5 +1,8 @@
 package com.realestateapp.realestateapp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,8 +33,8 @@ public class User implements Comparable<User>{
 
     //TODO Add this functionality
     @OneToMany(mappedBy = "author",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Post> userAds;
 
     public User() {
@@ -90,7 +93,7 @@ public class User implements Comparable<User>{
         this.lastName = lastName;
     }
 
-<<<<<<< HEAD
+
     public void addUserAds(Post add) {
         if (!userAds.contains(add)) {
             userAds.add(add);

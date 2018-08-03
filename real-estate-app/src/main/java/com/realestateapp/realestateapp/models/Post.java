@@ -1,5 +1,8 @@
 package com.realestateapp.realestateapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,11 +21,11 @@ public class Post {
     @Column(name = "Description")
     private String description;
 
-<<<<<<< HEAD
 //TODO add user functionality
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UserId")
+    @JsonManagedReference
     private User author;
 
     public Post() {

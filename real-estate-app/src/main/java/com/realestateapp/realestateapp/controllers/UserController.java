@@ -1,5 +1,6 @@
 package com.realestateapp.realestateapp.controllers;
 
+import com.realestateapp.realestateapp.models.Post;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.xml.ws.http.HTTPException;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/users")
@@ -36,6 +38,17 @@ public class UserController {
             e.printStackTrace();
         }
         return user;
+    }
+    @GetMapping("/getPosts")
+    public Set<Post> findPosts(@RequestParam("id") String stringID) {
+        User user = null;
+        try {
+            user = service.findById((Long.parseLong(stringID)));
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return user.getUserAds();
     }
 
     /**

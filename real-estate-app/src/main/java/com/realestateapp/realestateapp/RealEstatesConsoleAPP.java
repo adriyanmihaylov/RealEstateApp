@@ -28,7 +28,7 @@ class RealEstatesConsoleAPP{
         Session session = factory.openSession();
         session.beginTransaction();
         User existing = session.get(User.class, Long.parseLong("6"));
-        existing.getUserAds().forEach(System.out::println);
+//        existing.getUserAds().forEach(System.out::println);
 //        User newUser = new User("User166", "password",
 //                "emaildasdasd", "firstName",
 //                "lastName ");
