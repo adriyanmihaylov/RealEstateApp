@@ -8,7 +8,7 @@ public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "Id")
     private long id;
 
     @Column(name = "username")

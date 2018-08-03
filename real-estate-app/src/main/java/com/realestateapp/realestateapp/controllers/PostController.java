@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.realestateapp.realestateapp.services.base.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -84,5 +85,9 @@ public class PostController {
         } catch (Exception e) {
             return new ResponseEntity<>("Not FOUND", HttpStatus.NOT_FOUND);
         }
+    }
+    @RequestMapping(value = "/latest5",method = RequestMethod.GET)
+    public List<Post> latest5(){
+        return service.findLatest5();
     }
 }

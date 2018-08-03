@@ -6,6 +6,8 @@ import com.realestateapp.realestateapp.repositories.base.PostRepository;
 import com.realestateapp.realestateapp.services.base.PostService;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -47,7 +49,7 @@ public class PostServiceImpl implements PostService {
     //TODO Find the latest five, not in the repository. Here is the logic
     @Override
     public List<Post> findLatest5() {
-        List<Post> latestFive = repository.findAll();
+        List<Post> latestFive = repository.findAll().stream().limit(5).collect(Collectors.toList());
         return latestFive;
     }
 }

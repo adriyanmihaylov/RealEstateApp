@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMaterials")
+    @Column(name = "id")
     private int id;
     private String name;
 

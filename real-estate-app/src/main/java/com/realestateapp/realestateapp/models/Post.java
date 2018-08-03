@@ -6,18 +6,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Аds")
+@Table(name = "posts")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idAds")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "title")
+    @Column(name = "Title")
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "Description")
     private String description;
 
 //TODO add user functionality

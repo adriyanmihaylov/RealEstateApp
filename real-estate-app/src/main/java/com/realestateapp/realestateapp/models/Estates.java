@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Estates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEstates")
+    @Column(name = "id")
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -27,9 +27,6 @@ public class Estates {
     @Column(name = "bedrooms")
     private int bedrooms;
 
-    @Column(name = "title")
-    private String title;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TypeID")
     private Types type;
@@ -38,23 +35,15 @@ public class Estates {
     public Estates(){}
 
     public Estates(Address address, Material material, int price, int baths, int bedrooms,
-                   String title, Types type) {
+                    Types type) {
         this.address = address;
         this.material = material;
         this.price = price;
         this.baths = baths;
         this.bedrooms = bedrooms;
-        this.title = title;
         this.type = type;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
-    }
 
     public Address getAddress() {
         return address;
@@ -108,7 +97,7 @@ public class Estates {
                 getId(),getAddress(),
                 getMaterial(),getPrice(),
                 getBaths(),getBedrooms(),
-                getType(),getTitle());
+                getType());
 
     }
 }
