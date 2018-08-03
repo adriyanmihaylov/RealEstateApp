@@ -4,18 +4,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Types")
-public class Types {
+public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private int id;
+
     @Column(name = "name")
     private String name;
 
-    public Types(String name) {
+    public Type() {
+
+    }
+
+    public Type(String name) {
         this.name = name;
     }
-    public Types(){
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

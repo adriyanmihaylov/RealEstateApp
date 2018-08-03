@@ -48,7 +48,6 @@ public class User implements Comparable<User>{
         return this.id;
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -88,19 +87,6 @@ public class User implements Comparable<User>{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
-//    public void setUserAds(Set<Post> userAds) {
-//        this.userAds = userAds;
-//    }
-//    public void addUserAds(Post add) {
-//        if (!userAds.contains(add)) {
-//            userAds.add(add);
-//        }
-//        else{
-//            System.out.println("Add already exists for this user");
-//        }
-//    }
 
     @Override
     public String toString() {

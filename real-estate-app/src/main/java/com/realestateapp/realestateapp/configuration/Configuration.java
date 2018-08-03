@@ -1,9 +1,9 @@
 package com.realestateapp.realestateapp.configuration;
 
+import com.realestateapp.realestateapp.models.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import com.realestateapp.realestateapp.models.Post;
-import com.realestateapp.realestateapp.models.User;
+
 @org.springframework.context.annotation.Configuration
 public class Configuration {
 
@@ -15,6 +15,10 @@ public class Configuration {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Post.class)
+                .addAnnotatedClass(Estate.class)
+                .addAnnotatedClass(Address.class)
+                .addAnnotatedClass(Material.class)
+                .addAnnotatedClass(Type.class)
                 .buildSessionFactory();
     }
 }
