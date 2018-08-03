@@ -74,11 +74,12 @@
 					<span class="input-group-text">0.00</span>
 				</div>
 			</div>
+			<button type="button" class="btn btn-success"id="search">Search</button>
 		</div>
 	</div><!-- #cd-intro-tagline -->
 
 
-	<div class="cd-secondary-nav">
+	<div class="cd-secondary-nav"  >
 		<a href="#0" class="cd-secondary-nav-trigger">Menu<span></span></a> <!-- button visible on small devices -->
 		<nav>
 			<ul>
@@ -89,7 +90,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#cd-placeholder-5">
+					<a href="#cd-placeholder-2">
 						<b>All adds</b>
 						<span></span><!-- icon -->
 					</a>
@@ -97,8 +98,9 @@
 			</ul>
 		</nav>
 	</div> <!-- .cd-secondary-nav -->
-		<main role="main">
-
+		<div class="container-loader"><div class="loader" id="loader"></div></div>
+		<main role="main" id="main-content">
+			<h1 id="cd-placeholder-1" class="display-4">Latest 5 adds</h1>
 			<div class="album py-5 bg-light" id="album">
 				<div class="container">
 
@@ -243,7 +245,7 @@
 					</div>
 				</div>
 			</div>
-
+			<h1 id="cd-placeholder-2" class="display-4" >ALL adds</h1>
 		</main>
 
 
@@ -256,5 +258,6 @@
 			crossorigin="anonymous"></script>
 
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+		<script src="js/main.js"></script>
 </body>
 </html>
