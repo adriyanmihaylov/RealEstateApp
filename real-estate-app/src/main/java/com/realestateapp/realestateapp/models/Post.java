@@ -22,18 +22,26 @@ public class Post {
 
 //TODO add user functionality
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "UserId")
-//    private User author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserId")
+    private User author;
 
     public Post() {
 
     }
 
+    public Post(String title, String description, User author) {
+        setTitle(title);
+        setDescription(description);
+        setDate(new Date());
+        this.author = author;
+        author.addUserAds(this);
+    }
     public Post(String title, String description) {
         setTitle(title);
         setDescription(description);
         setDate(new Date());
+
     }
 
     public long getId() {
@@ -84,5 +92,9 @@ public class Post {
                 ", date= " + date +
                 "date = " + getDate();
 
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

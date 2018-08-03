@@ -6,8 +6,8 @@ var displayLoader = function(){
 $(document).ready(function () {
     $("#search").click(function () {
         displayLoader();
-       $loader.fadeOut(3000)
-        $.get( "http://localhost:8080/api/users/", function( data ) {
+       $loader.fadeOut(3000);
+        $.get( "http://localhost:8080/api/post/", function( data ) {
             data.forEach(function (element) {
                 var button1 = $("<button type='button' class='btn btn-sm btn-outline-secondary'>" + "View" + "</button>" )
                 var button2 = $("<button type='button' class='btn btn-sm btn-outline-secondary'>" + "Edit" + "</button>" )
@@ -15,10 +15,7 @@ $(document).ready(function () {
                 btnGroup.append(button2, button1);
                 var d_flexDiv = $("<div class='d-flex justify-content-between align-items-center'></div>");
                 d_flexDiv.append(btnGroup);
-                var textParagraph = $("<p class='card-text'>" + element.firstName +
-                    element.email +
-                    element.lastName+
-                    element.username + "</p>");
+                var textParagraph = $("<p class='card-text'>" + "</p>");
 
                 var divCardBody = $("<div class = card-body> </div>");
                 divCardBody.append(textParagraph, d_flexDiv);

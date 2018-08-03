@@ -1,6 +1,8 @@
 package com.realestateapp.realestateapp.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,11 +29,10 @@ public class User implements Comparable<User>{
     private String email;
 
     //TODO Add this functionality
-//
-//    @OneToMany(mappedBy = "author",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private Set<Post> userAds = new HashSet<>();
+    @OneToMany(mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Post> userAds;
 
     public User() {
     }
@@ -42,6 +43,7 @@ public class User implements Comparable<User>{
         setEmail(email);
         setFirstName(firstName);
         setLastName(lastName);
+        userAds = new HashSet<>();
     }
 
     public long getId() {
@@ -89,18 +91,18 @@ public class User implements Comparable<User>{
         this.lastName = lastName;
     }
 
+    public void addUserAds(Post add) {
+        if (!userAds.contains(add)) {
+            userAds.add(add);
+        }
+        else{
+            System.out.println("Add already exists for this user");
+        }
+    }
 
-//    public void setUserAds(Set<Post> userAds) {
-//        this.userAds = userAds;
-//    }
-//    public void addUserAds(Post add) {
-//        if (!userAds.contains(add)) {
-//            userAds.add(add);
-//        }
-//        else{
-//            System.out.println("Add already exists for this user");
-//        }
-//    }
+    public Set<Post> getUserAds() {
+        return userAds;
+    }
 
     @Override
     public String toString() {
