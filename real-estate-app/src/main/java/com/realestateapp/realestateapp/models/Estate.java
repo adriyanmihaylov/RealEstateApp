@@ -52,6 +52,10 @@ public class Estate {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Address getAddress() {
         return address;
     }

@@ -55,6 +55,10 @@ public class User implements Comparable<User> {
         return this.id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
