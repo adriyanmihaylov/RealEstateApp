@@ -1,5 +1,6 @@
 package com.realestateapp.realestateapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,9 +24,10 @@ public class Post {
 
 //TODO add user functionality
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserId")
     @JsonManagedReference
+    @JsonIgnore
     private User author;
 
     public Post() {

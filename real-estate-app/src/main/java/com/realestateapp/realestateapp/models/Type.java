@@ -3,7 +3,7 @@ package com.realestateapp.realestateapp.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Types")
+@Table(name = "types")
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
