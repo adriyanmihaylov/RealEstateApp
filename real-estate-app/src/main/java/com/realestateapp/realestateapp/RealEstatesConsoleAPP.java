@@ -1,7 +1,6 @@
 package com.realestateapp.realestateapp;
 
-import com.realestateapp.realestateapp.models.Post;
-import com.realestateapp.realestateapp.models.User;
+import com.realestateapp.realestateapp.models.*;
 import javafx.geometry.Pos;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +19,9 @@ class RealEstatesConsoleAPP{
                  .configure("hibernate.cfg.xml")
                  .addAnnotatedClass(Post.class)
                  .addAnnotatedClass(User.class)
+                 .addAnnotatedClass(Estate.class)
+                 .addAnnotatedClass(Address.class)
+                 .addAnnotatedClass(Material.class)
                  .buildSessionFactory();
 
  }

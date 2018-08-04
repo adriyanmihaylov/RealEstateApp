@@ -25,20 +25,12 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UserId")
-    @JsonManagedReference
     private User author;
 
     public Post() {
 
     }
 
-    public Post(String title, String description, User author) {
-        setTitle(title);
-        setDescription(description);
-        setDate(new Date());
-        this.author = author;
-        author.addUserAds(this);
-    }
     public Post(String title, String description) {
         setTitle(title);
         setDescription(description);
@@ -76,6 +68,14 @@ public class Post {
 
     private Date date = new Date();
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Ad:" +
@@ -85,9 +85,5 @@ public class Post {
                 ", date= " + date +
                 "date = " + getDate();
 
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
     }
 }
