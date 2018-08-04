@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.realestateapp.realestateapp.repositories.base.PostRepository;
 import com.realestateapp.realestateapp.services.base.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class PostServiceImpl implements PostService {
@@ -40,10 +41,13 @@ public class PostServiceImpl implements PostService {
         return repository.deleteById(id);
     }
 
-    //TODO Find the latest five, not in the repository. Here is the logic
     @Override
     public List<Post> findLatest5() {
-        List<Post> latestFive = repository.getAll();
+        List<Post> all = repository.getAll();
+        List<Post> latestFive = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            latestFive.add(all.get(all.size()-i-1));
+        }
         return latestFive;
     }
 }

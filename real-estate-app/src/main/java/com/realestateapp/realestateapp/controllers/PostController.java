@@ -94,4 +94,10 @@ public class PostController {
             return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @RequestMapping(value = "/latest5", method = RequestMethod.GET)
+    public List<Post> getLatest5(){
+        return service.findLatest5();
+    }
+
+
 }
