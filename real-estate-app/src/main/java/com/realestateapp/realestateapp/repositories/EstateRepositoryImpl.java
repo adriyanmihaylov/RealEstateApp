@@ -25,6 +25,11 @@ public class EstateRepositoryImpl implements EstateRepository {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             allEstates = session.createQuery("FROM Estate ").list();
+            for (Estate estate: allEstates) {
+                estate.getAddress().getName();
+                estate.getMaterial().getName();
+                estate.getType().getName();
+            }
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {

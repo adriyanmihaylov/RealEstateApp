@@ -1,6 +1,7 @@
 package com.realestateapp.realestateapp.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -31,8 +32,9 @@ public class User implements Comparable<User> {
 
     //TODO Add this functionality
     @OneToMany(mappedBy = "author",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+//    @JsonIgnore
     private Set<Post> userPosts;
 
     public User() {
