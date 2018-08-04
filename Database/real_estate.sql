@@ -83,16 +83,19 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `Description` varchar(255) DEFAULT NULL,
   `Date` datetime NOT NULL,
   `EstateID` int(10) unsigned NOT NULL,
+  `UserID` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `FK_posts_estates` (`EstateID`),
-  CONSTRAINT `FK_posts_estates` FOREIGN KEY (`EstateID`) REFERENCES `estates` (`Id`)
+  KEY `FK_posts_users` (`UserID`),
+  CONSTRAINT `FK_posts_estates` FOREIGN KEY (`EstateID`) REFERENCES `estates` (`Id`),
+  CONSTRAINT `FK_posts_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table real_estate.posts: ~2 rows (approximately)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` (`Id`, `Title`, `Description`, `Date`, `EstateID`) VALUES
-	(1, 'Post1', 'Mladost 2 Bedrooms Apartment ', '2018-08-03 14:14:34', 1),
-	(2, 'Post2', 'House in Musagenitsa', '2018-05-03 14:14:45', 2);
+INSERT INTO `posts` (`Id`, `Title`, `Description`, `Date`, `EstateID`, `UserID`) VALUES
+	(1, 'Post1', 'Mladost 2 Bedrooms Apartment ', '2018-08-03 14:14:34', 1, 1),
+	(2, 'Post2', 'House in Musagenitsa', '2018-05-03 14:14:45', 2, 2);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 -- Dumping structure for table real_estate.types

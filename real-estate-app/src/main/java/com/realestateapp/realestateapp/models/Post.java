@@ -34,13 +34,6 @@ public class Post {
 
     }
 
-    public Post(String title, String description, User author) {
-        setTitle(title);
-        setDescription(description);
-        setDate(new Date());
-        this.author = author;
-        author.addUserAds(this);
-    }
     public Post(String title, String description) {
         setTitle(title);
         setDescription(description);
@@ -50,6 +43,10 @@ public class Post {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -78,6 +75,14 @@ public class Post {
 
     private Date date = new Date();
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Ad:" +
@@ -87,9 +92,5 @@ public class Post {
                 ", date= " + date +
                 "date = " + getDate();
 
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
     }
 }

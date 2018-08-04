@@ -19,10 +19,15 @@ class RealEstatesConsoleAPP{
                  .configure("hibernate.cfg.xml")
                  .addAnnotatedClass(Post.class)
                  .addAnnotatedClass(User.class)
+
                  .addAnnotatedClass(Material.class)
                  .addAnnotatedClass(Type.class)
                  .addAnnotatedClass(Address.class)
                  .addAnnotatedClass(Estate.class)
+                 .addAnnotatedClass(Estate.class)
+                 .addAnnotatedClass(Address.class)
+                 .addAnnotatedClass(Material.class)
+
                  .buildSessionFactory();
 
  }

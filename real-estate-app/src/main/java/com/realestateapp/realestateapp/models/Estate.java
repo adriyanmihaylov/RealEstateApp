@@ -8,7 +8,7 @@ public class Estate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "AddressId")
@@ -48,8 +48,12 @@ public class Estate {
 //        setSize(size);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Address getAddress() {

@@ -2,15 +2,17 @@ package com.realestateapp.realestateapp.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+=======
+>>>>>>> c847e0d76bf5caa9db5acbbc57b1efcd8f494fdf
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,21 +40,34 @@ public class User implements Comparable<User>{
     @JsonBackReference
     @JsonIgnore
     private Set<Post> userAds;
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+//    @JsonIgnore
+    private Set<Post> userPosts;
+>>>>>>> c847e0d76bf5caa9db5acbbc57b1efcd8f494fdf
 
     public User() {
     }
 
-    public User(String username,String password,String email,String firstName, String lastName) {
+    public User(String username, String password, String email, String firstName, String lastName) {
         setUsername(username);
         setPasswordHash(password);
         setEmail(email);
         setFirstName(firstName);
         setLastName(lastName);
-        userAds = new HashSet<>();
     }
+
+//    public User(String username, String password, String email, String firstName, String lastName, Set<Post> userPosts) {
+//        this(username, password, email, firstName, lastName);
+//        setUserPosts(userPosts);
+//    }
 
     public long getId() {
         return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -95,18 +110,20 @@ public class User implements Comparable<User>{
         this.lastName = lastName;
     }
 
-
-    public void addUserAds(Post add) {
-        if (!userAds.contains(add)) {
-            userAds.add(add);
-        }
-        else{
-            System.out.println("Add already exists for this user");
-        }
+    public void setUserPosts(Set<Post> userAds) {
+        this.userPosts = userAds;
     }
 
-    public Set<Post> getUserAds() {
-        return userAds;
+    public Set<Post> getUserPosts() {
+        return userPosts;
+    }
+
+    public void addUserAds(Post add) {
+        if (!userPosts.contains(add)) {
+            userPosts.add(add);
+        } else {
+            System.out.println("Add already exists for this user");
+        }
     }
 
     @Override
@@ -120,8 +137,7 @@ public class User implements Comparable<User>{
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (object != null && object instanceof User) {
             User user = (User) object;
             return this.getUsername().equals(user.getUsername());
