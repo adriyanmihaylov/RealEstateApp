@@ -1,6 +1,9 @@
 package com.realestateapp.realestateapp.repositories;
 
+import com.realestateapp.realestateapp.models.Address;
 import com.realestateapp.realestateapp.models.Estate;
+import com.realestateapp.realestateapp.models.Material;
+import com.realestateapp.realestateapp.models.Type;
 import com.realestateapp.realestateapp.repositories.base.EstateRepository;
 import com.sun.rmi.rmid.ExecOptionPermission;
 import org.hibernate.Session;
@@ -61,6 +64,12 @@ public class EstateRepositoryImpl implements EstateRepository {
     public boolean create(Estate estate) {
         try (Session session = factory.openSession()){
             session.beginTransaction();
+            Material material = estate.getMaterial();
+            Type type = estate.getType();
+            Address address = estate.getAddress();
+            session.save(material);
+            session.save(address);
+            session.save(type);
             session.save(estate);
             session.getTransaction().commit();
             return true;

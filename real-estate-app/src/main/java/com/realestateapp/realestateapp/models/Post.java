@@ -1,9 +1,4 @@
 package com.realestateapp.realestateapp.models;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,15 +23,20 @@ public class Post {
     @JoinColumn(name = "UserId")
     private User author;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "EstateId")
+    private Estate estate;
+
+
     public Post() {
 
     }
 
-    public Post(String title, String description) {
+    public Post(String title, String description, Estate estate) {
         setTitle(title);
         setDescription(description);
         setDate(new Date());
-
+        setEstate(estate);
     }
 
     public long getId() {
@@ -90,5 +90,13 @@ public class Post {
                 ", date= " + date +
                 "date = " + getDate();
 
+    }
+
+    public Estate getEstate() {
+        return estate;
+    }
+
+    public void setEstate(Estate estate) {
+        this.estate = estate;
     }
 }

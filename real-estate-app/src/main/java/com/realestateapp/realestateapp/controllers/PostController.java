@@ -1,7 +1,8 @@
 package com.realestateapp.realestateapp.controllers;
 
-import com.realestateapp.realestateapp.models.Post;
+import com.realestateapp.realestateapp.models.*;
 
+import com.realestateapp.realestateapp.services.base.EstateService;
 import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
 import com.realestateapp.realestateapp.viewModels.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/posts")
 public class PostController {
     private PostService service;
+    private EstateService estateService;
 
     @Autowired
-    public PostController(PostService service) {
+    public PostController(PostService service, EstateService estateService) {
         this.service = service;
+        this.estateService = estateService;
     }
 
     //WORKING
@@ -49,9 +52,20 @@ public class PostController {
     //WORKING TRY WITH POST with http://localhost:8080/api/posts/create?title=AddNum1&description=Test1
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestParam("title") String title,
-                                    @RequestParam(value = "description", required = false) String description) {
+                                    @RequestParam(value = "description", required = false) String description,
+                                    @RequestParam("address") String address,
+                                    @RequestParam("material") String material,
+                                    @RequestParam("type") String type,
+                                    @RequestParam("price") int price,
+                                    @RequestParam("baths") int baths,
+                                    @RequestParam("bedrooms") int bedrooms) {
+        Address address1 = new Address(address);
+        Material material1 = new Material(material);
+        Type type1 = new Type(type);
+        Estate newEstate = new Estate(address1, material1, type1, price, baths, bedrooms);
+        estateService.create(newEstate);
+        Post post = new Post(title, description, newEstate);
 
-        Post post = new Post(title, description);
         try {
             if (service.create(post)) {
                 return new ResponseEntity<>("Post created successfully", HttpStatus.ACCEPTED);
@@ -67,7 +81,7 @@ public class PostController {
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestParam("id") String idString,
                                     @RequestParam(value = "title", required = false) String title,
-                                    @RequestParam(value = "description", required = false) String description) {
+                                    @RequestParam(value = "description", required = false) String description    ) {
 
         try {
             Post post = service.findById(Long.parseLong(idString));
