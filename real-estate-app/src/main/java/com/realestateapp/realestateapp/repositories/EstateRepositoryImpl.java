@@ -2,6 +2,7 @@ package com.realestateapp.realestateapp.repositories;
 
 import com.realestateapp.realestateapp.models.Estate;
 import com.realestateapp.realestateapp.repositories.base.EstateRepository;
+import com.sun.rmi.rmid.ExecOptionPermission;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,14 @@ public class EstateRepositoryImpl implements EstateRepository {
 
     @Override
     public boolean create(Estate estate) {
+        try (Session session = factory.openSession()){
+            session.beginTransaction();
+            session.save(estate);
+            session.getTransaction().commit();
+            return true;
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
         return false;
     }
 

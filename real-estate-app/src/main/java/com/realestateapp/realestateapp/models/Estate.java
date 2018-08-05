@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "estates")
 public class Estate {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =
+            GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -31,21 +32,19 @@ public class Estate {
     @Column(name = "bedrooms")
     private int bedrooms;
 
-    @Column(name = "size")
-    private int size;
 
     public Estate() {
 
     }
 
-    public Estate(Address address, Material material, Type type, int price, int baths, int bedrooms, int size) {
+    public Estate(Address address, Material material, Type type, int price, int baths, int bedrooms) {
         setAddress(address);
         setMaterial(material);
         setType(type);
         setPrice(price);
         setBaths(baths);
         setBedrooms(bedrooms);
-        setSize(size);
+
     }
 
     public long getId() {
@@ -104,11 +103,4 @@ public class Estate {
         this.bedrooms = bedrooms;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
 }

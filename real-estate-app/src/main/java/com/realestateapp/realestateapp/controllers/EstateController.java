@@ -1,12 +1,12 @@
 package com.realestateapp.realestateapp.controllers;
 
-import com.realestateapp.realestateapp.models.Estate;
+import com.realestateapp.realestateapp.models.*;
+import com.realestateapp.realestateapp.repositories.base.AddressRepository;
 import com.realestateapp.realestateapp.services.base.EstateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +44,28 @@ public class EstateController {
         }
 
         return estate;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<?> create(@RequestParam("address") String address,
+                                    @RequestParam("material") String material,
+                                    @RequestParam("type") String type,
+                                    @RequestParam("price") int price,
+                                    @RequestParam("baths") int baths,
+                                    @RequestParam("bedrooms") int bedrooms) {
+
+        Address address1 = new Address(address);
+        Material material1 = new Material(material);
+        Type type1 = new Type(type);
+        Estate newEstate = new Estate(address1, material1, type1, price, baths, bedrooms);
+        try {
+            if (service.create(newEstate)) {
+                return new ResponseEntity<>("Estate created successfully", HttpStatus.ACCEPTED);
+            }
+
+            return new ResponseEntity<>("Estate already exists", HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
