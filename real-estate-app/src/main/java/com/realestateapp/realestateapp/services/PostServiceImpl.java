@@ -37,7 +37,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public boolean deleteById(long id) throws Exception {
+    public boolean deleteById(long id) {
         return repository.deleteById(id);
     }
 
@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService {
     public List<Post> findLatest5() {
         List<Post> all = repository.getAll();
         List<Post> latestFive = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             latestFive.add(all.get(all.size()-i-1));
         }
         return latestFive;
