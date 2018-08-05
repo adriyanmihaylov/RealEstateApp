@@ -2,7 +2,6 @@ package com.realestateapp.realestateapp.viewModels;
 
 import com.realestateapp.realestateapp.models.Estate;
 import com.realestateapp.realestateapp.models.Post;
-import com.realestateapp.realestateapp.models.User;
 
 public class PostViewModel {
     public long id;
