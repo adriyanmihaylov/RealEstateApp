@@ -1,6 +1,7 @@
 package com.realestateapp.realestateapp.services;
 
 import com.realestateapp.realestateapp.models.Post;
+import javafx.geometry.Pos;
 import org.springframework.stereotype.Service;
 import com.realestateapp.realestateapp.repositories.base.PostRepository;
 import com.realestateapp.realestateapp.services.base.PostService;
@@ -42,6 +43,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> search(String address, String material, String type, int priceFrom, int priceTo, int baths, int bedrooms) {
+        return null;
+    }
+
+    @Override
     public List<Post> findLatest5() {
         List<Post> all = repository.getAll();
         List<Post> latestFive = new ArrayList<>();
@@ -50,4 +56,5 @@ public class PostServiceImpl implements PostService {
         }
         return latestFive;
     }
+
 }

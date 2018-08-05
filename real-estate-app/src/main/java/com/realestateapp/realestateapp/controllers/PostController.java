@@ -82,7 +82,7 @@ public class PostController {
     public ResponseEntity<?> update(@RequestParam("id") String idString,
                                     @RequestParam(value = "title", required = false) String title,
                                     @RequestParam(value = "description", required = false) String description    ) {
-
+        System.out.println(title);
         try {
             Post post = service.findById(Long.parseLong(idString));
 
@@ -92,6 +92,10 @@ public class PostController {
 
             if (description != null) {
                 post.setDescription(description);
+                service.update(post);
+            }
+            if (title!=null){
+                post.setTitle(title);
                 service.update(post);
             }
 
@@ -119,5 +123,15 @@ public class PostController {
         return service.findLatest5();
     }
 
+    @RequestMapping(value = "/search" , method = RequestMethod.GET)
+    public List<Post> search(@RequestParam(value = "address", required = false) String address,
+                             @RequestParam(value = "material", required = false) String material,
+                             @RequestParam(value = "type", required = false) String type,
+                             @RequestParam(value = "price", required = false) Integer priceFrom,
+                             @RequestParam(value = "price", required = false) Integer priceTo,
+                             @RequestParam(value = "baths", required = false) Integer baths,
+                             @RequestParam(value = "bedrooms", required = false) Integer bedrooms) {
 
+        return service.search(address, material, type, priceFrom, priceTo, baths, bedrooms);
+    }
 }

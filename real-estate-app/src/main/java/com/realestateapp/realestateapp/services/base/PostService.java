@@ -16,4 +16,6 @@ public interface PostService {
     boolean update(Post post);
 
     boolean deleteById(long id) throws Exception;
+    List<Post> search(String address,String material,
+                      String type, int priceFrom, int priceTo, int baths, int bedrooms);
 }
