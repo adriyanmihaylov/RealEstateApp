@@ -19,15 +19,9 @@ class RealEstatesConsoleAPP{
                  .configure("hibernate.cfg.xml")
                  .addAnnotatedClass(Post.class)
                  .addAnnotatedClass(User.class)
-
-                 .addAnnotatedClass(Material.class)
-                 .addAnnotatedClass(Type.class)
-                 .addAnnotatedClass(Address.class)
-                 .addAnnotatedClass(Estate.class)
                  .addAnnotatedClass(Estate.class)
                  .addAnnotatedClass(Address.class)
                  .addAnnotatedClass(Material.class)
-
                  .buildSessionFactory();
 
  }
@@ -35,6 +29,7 @@ class RealEstatesConsoleAPP{
     public static void main(String[] args) {
         Session session = factory.openSession();
         session.beginTransaction();
+        User existing = session.get(User.class, Long.parseLong("6"));
 //        existing.getUserAds().forEach(System.out::println);
 //        User newUser = new User("User166", "password",
 //                "emaildasdasd", "firstName",
@@ -67,14 +62,7 @@ class RealEstatesConsoleAPP{
 //            System.out.println("Users posts");
 //            newUser.getUserAds().stream().forEach(System.out::println);
 //        }
-        Material material = new Material("dasdasda");
-        Type type = new Type("dasdasda");
-        Address address = new Address("dasdasdsd");
-        Estate newEstate = new Estate(address, type, 32, 312, 3321);
-//        session.save(material);
-        session.save(type);
-        session.save(address);
-        session.save(newEstate);
+
         session.getTransaction().commit();
         session.close();
     }

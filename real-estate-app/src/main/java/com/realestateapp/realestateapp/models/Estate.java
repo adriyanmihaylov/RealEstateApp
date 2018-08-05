@@ -14,9 +14,9 @@ public class Estate {
     @JoinColumn(name = "AddressId")
     private Address address;
 
-
-//    @JoinColumn(name = "materialId")
-//    private int material =1;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "materialId")
+    private Material material;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TypeID")
@@ -30,22 +30,22 @@ public class Estate {
 
     @Column(name = "bedrooms")
     private int bedrooms;
-//
-//    @Column(name = "size")
-//    private int size;
+
+    @Column(name = "size")
+    private int size;
 
     public Estate() {
 
     }
 
-    public Estate(Address address, Type type, int price, int baths, int bedrooms) {
+    public Estate(Address address, Material material, Type type, int price, int baths, int bedrooms, int size) {
         setAddress(address);
-//        setMaterial(material);
+        setMaterial(material);
         setType(type);
         setPrice(price);
         setBaths(baths);
         setBedrooms(bedrooms);
-//        setSize(size);
+        setSize(size);
     }
 
     public long getId() {
@@ -64,13 +64,13 @@ public class Estate {
         this.address = address;
     }
 
-//    public Material getMaterial() {
-//        return material;
-//    }
-//
-//    public void setMaterial(Material material) {
-//        this.material = material;
-//    }
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
 
     public Type getType() {
         return type;
@@ -104,11 +104,11 @@ public class Estate {
         this.bedrooms = bedrooms;
     }
 
-//    public int getSize() {
-//        return size;
-//    }
+    public int getSize() {
+        return size;
+    }
 
-//    public void setSize(int size) {
-//        this.size = size;
-//    }
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
