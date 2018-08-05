@@ -2,6 +2,8 @@ package com.realestateapp.realestateapp.controllers;
 
 import com.realestateapp.realestateapp.models.Post;
 
+import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
+import com.realestateapp.realestateapp.viewModels.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.realestateapp.realestateapp.services.base.PostService;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -23,8 +26,11 @@ public class PostController {
 
     //WORKING
     @GetMapping(value = "/")
-    public List<Post> findAll() {
-        return service.findAll();
+    public List<PostViewModel> findAll() {
+        return service.findAll()
+                .stream()
+                .map(PostViewModel::fromModel)
+                .collect(Collectors.toList());
     }
 
     //WORKING

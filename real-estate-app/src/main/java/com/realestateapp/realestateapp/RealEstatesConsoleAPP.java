@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 class RealEstatesConsoleAPP{
-    static SessionFactory factory = null;
+    static SessionFactory factory;
  static {
          factory = new Configuration()
                  .configure("hibernate.cfg.xml")

@@ -32,9 +32,9 @@ public class User implements Comparable<User> {
 
     //TODO Add this functionality
     @OneToMany(mappedBy = "author",
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    @JsonIgnore
+//    @JsonIgnore
     private Set<Post> userPosts;
 
     public User() {

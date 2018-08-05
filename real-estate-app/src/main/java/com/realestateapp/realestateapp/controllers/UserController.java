@@ -1,15 +1,17 @@
 package com.realestateapp.realestateapp.controllers;
 
 import com.realestateapp.realestateapp.models.Post;
+import com.realestateapp.realestateapp.models.User;
+import com.realestateapp.realestateapp.services.base.UserService;
+import com.realestateapp.realestateapp.viewModels.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.realestateapp.realestateapp.models.User;
-import com.realestateapp.realestateapp.services.base.UserService;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -22,8 +24,11 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public List<User> getAllUsers() {
-        return service.findAll();
+    public List<UserViewModel> getAllUsers() {
+        return service.findAll()
+                .stream()
+                .map(UserViewModel::fromModel)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/get")
@@ -36,6 +41,7 @@ public class UserController {
         }
         return user;
     }
+
     @GetMapping("/posts")
     public Set<Post> findPosts(@RequestParam("id") String stringID) {
         User user = null;
@@ -84,7 +90,7 @@ public class UserController {
                 return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
             }
 
-            if(email != null) {
+            if (email != null) {
                 user.setEmail(email);
             }
 

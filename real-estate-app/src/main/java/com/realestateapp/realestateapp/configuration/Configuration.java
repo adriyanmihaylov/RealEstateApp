@@ -1,9 +1,7 @@
 package com.realestateapp.realestateapp.configuration;
 
-import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-//import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.realestateapp.realestateapp.models.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -27,11 +25,6 @@ public class Configuration {
                 .addAnnotatedClass(Type.class)
                 .buildSessionFactory();
     }
-
-//    @Bean
-//    public Module datatypeHibernateModule() {
-//        return new Hibernate4Module();
-//    }
 
     @Bean
     @Primary
