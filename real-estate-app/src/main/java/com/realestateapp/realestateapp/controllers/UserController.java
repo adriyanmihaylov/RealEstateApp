@@ -3,12 +3,16 @@ package com.realestateapp.realestateapp.controllers;
 import com.realestateapp.realestateapp.models.Post;
 import com.realestateapp.realestateapp.models.User;
 import com.realestateapp.realestateapp.services.base.UserService;
+import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
+import com.realestateapp.realestateapp.viewModels.PostViewModel;
 import com.realestateapp.realestateapp.viewModels.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,26 +28,34 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public List<UserViewModel> getAllUsers() {
-        return service.findAll()
+    public ResponseEntity<List<UserViewModel>> getAllUsers() {
+        List<User> users = service.findAll();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(users
                 .stream()
                 .map(UserViewModel::fromModel)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/get")
-    public User findById(@RequestParam("id") String stringID) {
+    public ResponseEntity<UserViewModel> findById(@RequestParam("id") String stringID) {
         User user = null;
         try {
             user = service.findById((Long.parseLong(stringID)));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return user;
+        if (user == null) {
+            return new ResponseEntity<>(new UserViewModel(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(UserViewModel.fromModel(user), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/posts")
-    public Set<Post> findPosts(@RequestParam("id") String stringID) {
+    public ResponseEntity<Set<PostSimpleViewModel>> findPosts(@RequestParam("id") String stringID) {
         User user = null;
         try {
             user = service.findById((Long.parseLong(stringID)));
@@ -51,7 +63,15 @@ public class UserController {
             e.printStackTrace();
 
         }
-        return user.getUserPosts();
+        if (user == null) {
+            return new ResponseEntity<>(new HashSet<>(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(user.getUserPosts()
+                .stream()
+                .map(PostSimpleViewModel::fromModel)
+                .collect(Collectors.toSet()),
+                HttpStatus.ACCEPTED);
     }
 
     /**
