@@ -120,7 +120,7 @@ public class UserRepositoryImpl implements UserRepository {
         org.apache.lucene.search.Query query = qb
                 .keyword()
                 .onFields( "username")
-                .matching("User1")
+                .matching("user")
                 .createQuery();
         Query hibQuery =
                 fullTextSession.createFullTextQuery(query, User.class);

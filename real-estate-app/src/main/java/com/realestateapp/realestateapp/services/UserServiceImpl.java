@@ -41,8 +41,9 @@ public class UserServiceImpl implements UserService {
     public boolean deleteById(long id) {
         return userRepository.deleteById(id);
     }
+
     @Override
-    public List<User> test() throws InterruptedException {
-        return userRepository.test();
+    public List<User> search() throws InterruptedException {
+        return userRepository.search();
     }
 }

@@ -1,4 +1,6 @@
 package com.realestateapp.realestateapp.models;
+import org.hibernate.search.annotations.Field;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,10 +12,10 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
+    @Field
     @Column(name = "Title")
     private String title;
-
+    @Field
     @Column(name = "Description")
     private String description;
 

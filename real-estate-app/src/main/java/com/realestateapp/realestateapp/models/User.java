@@ -44,7 +44,7 @@ public class User implements Comparable<User> {
     @OneToMany(mappedBy = "author",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-//    @JsonIgnore
+    @IndexedEmbedded
     private Set<Post> userPosts;
 
     public User() {
