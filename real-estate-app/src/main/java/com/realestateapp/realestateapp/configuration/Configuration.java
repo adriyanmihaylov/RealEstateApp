@@ -10,7 +10,6 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
-
     @Bean
     public SessionFactory createSessionFactory() {
         System.out.println("SessionFactory was created.");

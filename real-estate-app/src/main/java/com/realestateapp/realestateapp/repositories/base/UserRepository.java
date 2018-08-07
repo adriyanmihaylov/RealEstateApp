@@ -15,4 +15,6 @@ public interface UserRepository {
 
     boolean deleteById(long id);
 
+    List search() throws InterruptedException;
+
 }

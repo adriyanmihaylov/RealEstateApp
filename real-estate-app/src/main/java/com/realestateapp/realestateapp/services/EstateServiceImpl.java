@@ -12,8 +12,10 @@ public class EstateServiceImpl implements EstateService {
 
     private EstateRepository repository;
 
+
     public EstateServiceImpl(EstateRepository repository) {
         this.repository = repository;
+
     }
 
     @Override
@@ -40,4 +42,5 @@ public class EstateServiceImpl implements EstateService {
     public boolean deleteById(long id) {
         return repository.deleteById(id);
     }
+
 }

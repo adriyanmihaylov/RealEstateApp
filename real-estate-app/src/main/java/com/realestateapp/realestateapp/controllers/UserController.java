@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -186,4 +187,9 @@ public class UserController {
             return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+//    @GetMapping("/search")
+//    public List<UserViewModel> search() throws InterruptedException {
+//        return service.search().stream().map(UserViewModel::fromModel).collect(Collectors.toList());
+//    }
+
 }

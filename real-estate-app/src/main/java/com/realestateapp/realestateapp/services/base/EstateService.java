@@ -15,3 +15,4 @@ public interface EstateService {
 
     boolean deleteById(long id);
 }
+

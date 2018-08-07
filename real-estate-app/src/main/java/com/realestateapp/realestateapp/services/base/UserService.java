@@ -14,4 +14,6 @@ public interface UserService {
     boolean update(User user);
 
     boolean deleteById(long id);
+
+    List<User> search() throws InterruptedException;
 }

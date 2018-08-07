@@ -3,7 +3,6 @@ package com.realestateapp.realestateapp.controllers;
 import com.realestateapp.realestateapp.models.*;
 
 import com.realestateapp.realestateapp.services.base.EstateService;
-import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
 import com.realestateapp.realestateapp.viewModels.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,7 +33,6 @@ public class PostController {
 
         return "base";
     }
-
 
 
     //WORKING
@@ -91,7 +89,7 @@ public class PostController {
     @RequestMapping(value = "properties/update", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestParam("id") String idString,
                                     @RequestParam(value = "title", required = false) String title,
-                                    @RequestParam(value = "description", required = false) String description    ) {
+                                    @RequestParam(value = "description", required = false) String description) {
         System.out.println(title);
         try {
             Post post = service.findById(Long.parseLong(idString));
@@ -104,7 +102,7 @@ public class PostController {
                 post.setDescription(description);
                 service.update(post);
             }
-            if (title!=null){
+            if (title != null) {
                 post.setTitle(title);
                 service.update(post);
             }
@@ -128,8 +126,9 @@ public class PostController {
             return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @RequestMapping(value = "/properties/latest5", method = RequestMethod.GET)
-    public List<Post> getLatest5(){
+    public List<Post> getLatest5() {
         return service.findLatest5();
     }
 
