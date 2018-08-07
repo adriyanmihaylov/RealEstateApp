@@ -2,11 +2,18 @@ package com.realestateapp.realestateapp.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//import org.hibernate.search.annotations.TermVector;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.type.YesNoType;
+import org.jboss.logging.Field;
+
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Indexed
 @Table(name = "users")
 public class User implements Comparable<User> {
 
@@ -15,12 +22,15 @@ public class User implements Comparable<User> {
     @Column(name = "Id")
     private long id;
 
+
     @Column(name = "username")
+    @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
     private String username;
 
     @Column(name = "password")
     private String passwordHash;
 
+    @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
     @Column(name = "FirstName")
     private String firstName;
 

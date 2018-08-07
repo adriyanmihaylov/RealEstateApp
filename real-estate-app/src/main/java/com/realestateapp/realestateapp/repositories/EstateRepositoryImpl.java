@@ -5,10 +5,9 @@ import com.realestateapp.realestateapp.models.Estate;
 import com.realestateapp.realestateapp.models.Material;
 import com.realestateapp.realestateapp.models.Type;
 import com.realestateapp.realestateapp.repositories.base.EstateRepository;
-import com.sun.rmi.rmid.ExecOptionPermission;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -88,4 +87,6 @@ public class EstateRepositoryImpl implements EstateRepository {
     public boolean deleteById(long id) {
         return false;
     }
+
+
 }

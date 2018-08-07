@@ -3,7 +3,6 @@ package com.realestateapp.realestateapp.controllers;
 import com.realestateapp.realestateapp.models.*;
 
 import com.realestateapp.realestateapp.services.base.EstateService;
-import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
 import com.realestateapp.realestateapp.viewModels.PostViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -119,8 +118,8 @@ public class PostController {
         }
     }
     @RequestMapping(value = "/latest5", method = RequestMethod.GET)
-    public List<Post> getLatest5(){
-        return service.findLatest5();
+    public List<PostViewModel> getLatest5(){
+        return service.findLatest5().stream().map(PostViewModel::fromModel).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/search" , method = RequestMethod.GET)
