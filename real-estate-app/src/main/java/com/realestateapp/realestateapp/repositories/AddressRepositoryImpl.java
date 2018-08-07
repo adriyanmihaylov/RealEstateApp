@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Repository
 public class AddressRepositoryImpl<T> implements AddressRepository {
     private SessionFactory factory;
+
     AddressRepositoryImpl(SessionFactory factory){
         this.factory = factory;
     }

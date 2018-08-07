@@ -1,16 +1,20 @@
 package com.realestateapp.realestateapp.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.realestateapp.realestateapp.models.Property;
+import com.realestateapp.realestateapp.services.base.PropertiesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("view","home/index");
+        model.addAttribute("view", "home/index");
 
         return "base";
     }

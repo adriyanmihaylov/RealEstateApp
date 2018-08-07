@@ -1,15 +1,11 @@
 package com.realestateapp.realestateapp.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 //import org.hibernate.search.annotations.TermVector;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
-import org.hibernate.type.YesNoType;
-import org.jboss.logging.Field;
 
 
-import javax.persistence.*;
+        import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -21,7 +17,6 @@ public class User implements Comparable<User> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private long id;
-
 
     @Column(name = "username")
     @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
@@ -40,12 +35,11 @@ public class User implements Comparable<User> {
     @Column(name = "email")
     private String email;
 
-    //TODO Add this functionality
     @OneToMany(mappedBy = "author",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
 //    @JsonIgnore
-    private Set<Post> userPosts;
+    private Set<Property> userProperties;
 
     public User() {
     }
@@ -58,9 +52,9 @@ public class User implements Comparable<User> {
         setLastName(lastName);
     }
 
-//    public User(String username, String password, String email, String firstName, String lastName, Set<Post> userPosts) {
+//    public User(String username, String password, String email, String firstName, String lastName, Set<Property> userProperties) {
 //        this(username, password, email, firstName, lastName);
-//        setUserPosts(userPosts);
+//        setUserProperties(userProperties);
 //    }
 
     public long getId() {
@@ -111,17 +105,17 @@ public class User implements Comparable<User> {
         this.lastName = lastName;
     }
 
-    public void setUserPosts(Set<Post> userAds) {
-        this.userPosts = userAds;
+    public void setUserProperties(Set<Property> userAds) {
+        this.userProperties = userAds;
     }
 
-    public Set<Post> getUserPosts() {
-        return userPosts;
+    public Set<Property> getUserProperties() {
+        return userProperties;
     }
 
-    public void addUserAds(Post add) {
-        if (!userPosts.contains(add)) {
-            userPosts.add(add);
+    public void addUserAds(Property add) {
+        if (!userProperties.contains(add)) {
+            userProperties.add(add);
         } else {
             System.out.println("Add already exists for this user");
         }

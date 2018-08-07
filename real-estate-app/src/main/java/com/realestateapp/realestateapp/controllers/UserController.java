@@ -1,10 +1,8 @@
 package com.realestateapp.realestateapp.controllers;
 
-import com.realestateapp.realestateapp.models.Post;
 import com.realestateapp.realestateapp.models.User;
 import com.realestateapp.realestateapp.services.base.UserService;
-import com.realestateapp.realestateapp.viewModels.PostSimpleViewModel;
-import com.realestateapp.realestateapp.viewModels.PostViewModel;
+import com.realestateapp.realestateapp.viewModels.PropertySimpleViewModel;
 import com.realestateapp.realestateapp.viewModels.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -96,7 +93,7 @@ public class UserController {
     }
 
     @GetMapping("/users/posts")
-    public ResponseEntity<Set<PostSimpleViewModel>> findPosts(@RequestParam("id") String stringID) {
+    public ResponseEntity<Set<PropertySimpleViewModel>> findPosts(@RequestParam("id") String stringID) {
         User user = null;
         try {
             user = service.findById((Long.parseLong(stringID)));
@@ -108,9 +105,9 @@ public class UserController {
             return new ResponseEntity<>(new HashSet<>(), HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(user.getUserPosts()
+        return new ResponseEntity<>(user.getUserProperties()
                 .stream()
-                .map(PostSimpleViewModel::fromModel)
+                .map(PropertySimpleViewModel::fromModel)
                 .collect(Collectors.toSet()),
                 HttpStatus.ACCEPTED);
     }
@@ -189,7 +186,7 @@ public class UserController {
     }
 //    @GetMapping("/search")
 //    public List<UserViewModel> search() throws InterruptedException {
-//        return service.search().stream().map(UserViewModel::fromModel).collect(Collectors.toList());
+//        return postService.search().stream().map(UserViewModel::fromModel).collect(Collectors.toList());
 //    }
 
 }
