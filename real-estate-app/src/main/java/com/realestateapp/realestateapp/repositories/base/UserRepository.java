@@ -7,14 +7,11 @@ import java.util.List;
 public interface UserRepository {
     List<User> getAll();
 
-    User findById(Long id);
+    User getById(int id);
 
-   boolean create(User user);
+    boolean create(User user);
 
     boolean update(User user);
 
-    boolean deleteById(long id);
-
-    List search() throws InterruptedException;
-
+    boolean deleteById(int id);
 }

@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(x`)
+@RequestMapping()
 public class UserController {
     private UserService service;
 
@@ -63,12 +63,9 @@ public class UserController {
     }
 
 
-
-
-
     @GetMapping("/users/all")
     public ResponseEntity<List<UserViewModel>> getAllUsers() {
-        List<User> users = service.findAll();
+        List<User> users = service.getAll();
         if (users.isEmpty()) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
         }
@@ -83,7 +80,7 @@ public class UserController {
     public ResponseEntity<UserViewModel> findById(@RequestParam("id") String stringID) {
         User user = null;
         try {
-            user = service.findById((Long.parseLong(stringID)));
+            user = service.getById(Integer.parseInt(stringID));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +94,7 @@ public class UserController {
     public ResponseEntity<Set<PropertySimpleViewModel>> findPosts(@RequestParam("id") String stringID) {
         User user = null;
         try {
-            user = service.findById((Long.parseLong(stringID)));
+            user = service.getById(Integer.parseInt(stringID));
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -143,7 +140,7 @@ public class UserController {
                                     @RequestParam(value = "firstName", required = false) String firstName,
                                     @RequestParam(value = "lastName", required = false) String lastName) {
         try {
-            User user = service.findById(Long.parseLong(id));
+            User user = service.getById(Integer.parseInt(id));
 
             if (user == null) {
                 return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -176,7 +173,7 @@ public class UserController {
     @RequestMapping(value = "/users/delete", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteById(@RequestParam("id") String idString) {
         try {
-            if (service.deleteById(Long.parseLong(idString))) {
+            if (service.deleteById(Integer.parseInt(idString))) {
                 return new ResponseEntity<>("User deleted successfully", HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<>("USER NOT FOUND! ID=" + idString, HttpStatus.NOT_FOUND);
@@ -185,9 +182,4 @@ public class UserController {
             return new ResponseEntity<>("Error " + e.getMessage() + "!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @GetMapping("/search")
-//    public List<UserViewModel> search() throws InterruptedException {
-//        return postService.search().stream().map(UserViewModel::fromModel).collect(Collectors.toList());
-//    }
-
 }

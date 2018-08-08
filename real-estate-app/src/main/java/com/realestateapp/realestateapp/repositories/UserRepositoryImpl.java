@@ -2,14 +2,11 @@ package com.realestateapp.realestateapp.repositories;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.search.FullTextSession;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 
 import com.realestateapp.realestateapp.models.User;
 import com.realestateapp.realestateapp.repositories.base.UserRepository;
-import javax.persistence.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +33,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findById(Long id) {
+    public User getById(int id) {
         User user = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -91,8 +88,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean deleteById(long id) {
-        User user = findById(id);
+    public boolean deleteById(int id) {
+        User user = getById(id);
         if (user != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();
@@ -108,26 +105,5 @@ public class UserRepositoryImpl implements UserRepository {
 
         System.out.println("User with id: " + id + " wasn't found!");
         return false;
-    }
-    @Override
-    public List<User> search() throws InterruptedException {
-        Session session = factory.openSession();
-             FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
-            fullTextSession.createIndexer().startAndWait();
-             Transaction tx = fullTextSession.beginTransaction();
-        QueryBuilder qb = fullTextSession.getSearchFactory()
-                .buildQueryBuilder().forEntity(User.class).get();
-        org.apache.lucene.search.Query query = qb
-                .keyword()
-                .onFields( "username")
-                .matching("user")
-                .createQuery();
-        Query hibQuery =
-                fullTextSession.createFullTextQuery(query, User.class);
-
-        List result = hibQuery.getResultList();
-        tx.commit();
-        session.close();
-        return result;
     }
 }

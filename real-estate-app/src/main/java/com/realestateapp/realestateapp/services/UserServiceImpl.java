@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAll() {
         return userRepository.getAll();
     }
 
     @Override
-    public User findById(long id) {
-        return userRepository.findById(id);
+    public User getById(int id) {
+        return userRepository.getById(id);
     }
 
     @Override
@@ -38,14 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteById(long id) {
+    public boolean deleteById(int id) {
         return userRepository.deleteById(id);
-    }
-
-    @Override
-    public List<User> search() throws InterruptedException {
-
-        return userRepository.search();
-
     }
 }

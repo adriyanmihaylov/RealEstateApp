@@ -15,18 +15,18 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> findAll() {
-        return repository.listAll();
+    public List<Address> getAll() {
+        return repository.getAll();
     }
 
     @Override
-    public Address findById(long id) {
-        return repository.findById(id);
+    public Address getById(int id) {
+        return repository.getById(id);
     }
 
     @Override
-    public void create(Address address) throws Exception {
-        List<Address> allAddresses = findAll();
+    public void create(Address address) {
+        List<Address> allAddresses = getAll();
 
         allAddresses.stream()
                 .filter(addressItem -> address.getName().equals(addressItem.getName()))
@@ -50,7 +50,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         repository.delete(id);
     }
 }

@@ -12,16 +12,16 @@ import java.util.List;
 public class AddressRepositoryImpl<T> implements AddressRepository {
     private SessionFactory factory;
 
-    AddressRepositoryImpl(SessionFactory factory){
+    AddressRepositoryImpl(SessionFactory factory) {
         this.factory = factory;
     }
 
     @Override
-    public List<Address> listAll() {
+    public List<Address> getAll() {
         List<Address> allAddresses = new ArrayList<>();
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            allAddresses= session.createQuery("FROM Address").list();
+            allAddresses = session.createQuery("FROM Address").list();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class AddressRepositoryImpl<T> implements AddressRepository {
     }
 
     @Override
-    public Address findById(long id) {
+    public Address getById(int id) {
         Address address = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -47,10 +47,10 @@ public class AddressRepositoryImpl<T> implements AddressRepository {
     public void create(Address address) throws Exception {
         //TODO validation
 
-        List<Address> allAddresses = this.listAll();
-        if(address != null) {
-            for (Address addr: allAddresses) {
-                if(addr.getName().equals(address.getName())) {
+        List<Address> allAddresses = this.getAll();
+        if (address != null) {
+            for (Address addr : allAddresses) {
+                if (addr.getName().equals(address.getName())) {
 
                 }
             }
@@ -78,8 +78,8 @@ public class AddressRepositoryImpl<T> implements AddressRepository {
     }
 
     @Override
-    public void delete(long id) {
-        Address address = findById(id);
+    public void delete(int id) {
+        Address address = getById(id);
         if (address != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();

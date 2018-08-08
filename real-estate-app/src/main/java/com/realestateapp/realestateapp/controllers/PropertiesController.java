@@ -6,8 +6,6 @@ import com.realestateapp.realestateapp.viewModels.PropertyViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.realestateapp.realestateapp.services.base.PropertiesService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +29,7 @@ public class PropertiesController {
     //WORKING
     @GetMapping(value = "/properties")
     public List<PropertyViewModel> findAll() {
-        return service.findAll()
+        return service.getAll()
                 .stream()
                 .map(PropertyViewModel::fromModel)
                 .collect(Collectors.toList());
@@ -42,7 +40,7 @@ public class PropertiesController {
     public Property findById(@RequestParam("id") String stringID) {
         Property property = null;
         try {
-            property = service.findById((Integer.parseInt(stringID)));
+            property = service.getById((Integer.parseInt(stringID)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,7 +89,7 @@ public class PropertiesController {
 //                                    @RequestParam(value = "description", required = false) String description) {
 //        System.out.println(title);
 //        try {
-//            Property property = service.findById(Long.parseLong(idString));
+//            Property property = service.getById(Long.parseLong(idString));
 //
 //            if (property == null) {
 //                return new ResponseEntity<>("Property not found", HttpStatus.NOT_FOUND);

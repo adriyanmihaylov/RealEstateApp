@@ -5,15 +5,13 @@ import com.realestateapp.realestateapp.models.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> findAll();
+    List<User> getAll();
 
-    User findById(long id);
+    User getById(int id);
 
     boolean create(User user);
 
     boolean update(User user);
 
-    boolean deleteById(long id);
-
-    List<User> search() throws InterruptedException;
+    boolean deleteById(int id);
 }

@@ -7,11 +7,11 @@ import java.util.List;
 public interface PropertyRepository {
     List<Property> getAll();
 
-    Property findById(long id);
+    Property getById(int id);
 
     boolean create(Property newAd);
 
     boolean update(Property ad);
 
-    boolean deleteById(long id);
+    boolean deleteById(int id);
 }

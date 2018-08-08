@@ -21,14 +21,7 @@
             root
         </property>
         <property name = "hibernate.connection.password">
-        99096549
-
+        123456
         </property>
-        <property name="hibernate.search.default.directory_provider">
-            filesystem
-        </property>
-
-
-        <property name = "hibernate.search.default.indexBase">/home/yani/documents/indexes</property>
     </session-factory>
 </hibernate-configuration>
