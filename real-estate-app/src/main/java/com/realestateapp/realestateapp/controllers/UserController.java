@@ -18,10 +18,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-<<<<<<< HEAD
-=======
-@RequestMapping()
->>>>>>> e0f6f64181884c78295a324626900e4ba1b8e4bb
 public class UserController {
     private UserService service;
 

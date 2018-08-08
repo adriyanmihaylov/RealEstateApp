@@ -79,6 +79,11 @@ public class PropertyRepositoryImpl implements PropertyRepository {
     }
 
     @Override
+    public boolean deleteById(long id) {
+        return false;
+    }
+
+    @Override
     public boolean deleteById(int id) {
         Property property = getById(id);
         if (property != null) {

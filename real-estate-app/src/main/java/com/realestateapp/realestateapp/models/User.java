@@ -37,7 +37,7 @@ public class User implements Comparable<User> {
 
     @OneToMany(mappedBy = "author",
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL) 
+            cascade = CascadeType.ALL)
        private Set<Property> userProperties;
     public User() {
     }

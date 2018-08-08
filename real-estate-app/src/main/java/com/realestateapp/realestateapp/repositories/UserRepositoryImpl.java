@@ -106,11 +106,5 @@ public class UserRepositoryImpl implements UserRepository {
         System.out.println("User with id: " + id + " wasn't found!");
         return false;
     }
-<<<<<<< HEAD
-    @Override
-    public List<User> search() {
-        return null;
-    }
-=======
->>>>>>> e0f6f64181884c78295a324626900e4ba1b8e4bb
+
 }
