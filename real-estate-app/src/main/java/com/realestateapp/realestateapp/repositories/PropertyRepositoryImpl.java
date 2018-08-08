@@ -95,4 +95,21 @@ public class PropertyRepositoryImpl implements PropertyRepository {
         }
         return false;
     }
+
+    @Override
+    public List<Property> find(String address, String material,
+                               String type, String priceFrom, String priceTo, String baths, String bedrooms, String size) {
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Property> result;
+        String querry = String.format("From Property p where " +
+                        "p.address.name LIKE '%s' AND p.material.name LIKE '%s'" +
+                        " AND p.type.name LIKE '%s' AND p.price >= '%s' AND p.price <= '%s' AND p.baths LIKE '%s' AND p.bedrooms LIKE '%s' AND p.size LIKE '%s'",
+                address, material, type, priceFrom, priceTo, baths, bedrooms, size);
+
+
+        result = session.createQuery(querry).list();
+        result.forEach(System.out::println);
+        return null;
+    }
 }

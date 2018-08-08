@@ -40,6 +40,11 @@ public class PropertiesServiceImpl implements PropertiesService {
         return repository.deleteById(id);
     }
 
+    @Override
+    public List<Property> find(String address, String material, String type, String priceFrom, String priceTo, String baths, String bedrooms, String size) {
+        return repository.find(address, material, type, priceFrom, priceTo, baths, bedrooms, size);
+    }
+
 //    @Override
 //    public List<Property> search(String address, String material, String type, int priceFrom, int priceTo, int baths, int bedrooms) {
 //        return null;

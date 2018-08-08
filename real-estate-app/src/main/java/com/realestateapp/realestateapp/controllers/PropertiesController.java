@@ -20,12 +20,10 @@ public class PropertiesController {
     @Autowired
     private PropertiesService service;
 
-    @GetMapping(value = "/search")
-    public String searchProperties(Model model) {
-        model.addAttribute("view", "properties/properties-list");
+//    @GetMapping(value = "/search")
+//    public String searchProperties(Model model) {
 
-        return "base";
-    }
+//    }
 
 
     //WORKING
@@ -126,15 +124,21 @@ public class PropertiesController {
 //        }
 //    }
 
-//    @RequestMapping(value = "/search" , method = RequestMethod.GET)
-//    public List<Property> search(@RequestParam(value = "address", required = false) String address,
-//                             @RequestParam(value = "material", required = false) String material,
-//                             @RequestParam(value = "type", required = false) String type,
-//                             @RequestParam(value = "price", required = false) Integer priceFrom,
-//                             @RequestParam(value = "price", required = false) Integer priceTo,
-//                             @RequestParam(value = "baths", required = false) Integer baths,
-//                             @RequestParam(value = "bedrooms", required = false) Integer bedrooms) {
-//
-//        return postService.search(address, material, type, priceFrom, priceTo, baths, bedrooms);
-//    }
+    @RequestMapping(value = "/search" , method = RequestMethod.GET)
+    public String search(@RequestParam(value = "address", required = false, defaultValue = "%") String address,
+                             @RequestParam(value = "material", required = false, defaultValue = "%") String material,
+                             @RequestParam(value = "type", required = false ,defaultValue = "%") String type,
+                             @RequestParam(value = "price", required = false, defaultValue = "0") String priceFrom,
+                             @RequestParam(value = "price", required = false, defaultValue = Integer.MAX_VALUE + "") String priceTo,
+                             @RequestParam(value = "baths", required = false, defaultValue = "%") String baths,
+                             @RequestParam(value = "bedrooms", required = false, defaultValue = "%") String bedrooms,
+                         @RequestParam(value = "size", required = false, defaultValue = "%") String size,
+                         Model model) {
+        model.addAttribute("view", "properties/properties-list");
+        List<Property> result = service.find(address, material, type, priceFrom , priceTo ,
+                baths, bedrooms, size);
+        model.addAttribute("result", result);
+        return "base";
+
+   }
 }

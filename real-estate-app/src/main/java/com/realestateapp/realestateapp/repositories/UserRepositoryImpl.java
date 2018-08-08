@@ -110,24 +110,7 @@ public class UserRepositoryImpl implements UserRepository {
         return false;
     }
     @Override
-    public List<User> search() throws InterruptedException {
-        Session session = factory.openSession();
-             FullTextSession fullTextSession = org.hibernate.search.Search.getFullTextSession(session);
-            fullTextSession.createIndexer().startAndWait();
-             Transaction tx = fullTextSession.beginTransaction();
-        QueryBuilder qb = fullTextSession.getSearchFactory()
-                .buildQueryBuilder().forEntity(User.class).get();
-        org.apache.lucene.search.Query query = qb
-                .keyword()
-                .onFields( "username")
-                .matching("user")
-                .createQuery();
-        Query hibQuery =
-                fullTextSession.createFullTextQuery(query, User.class);
-
-        List result = hibQuery.getResultList();
-        tx.commit();
-        session.close();
-        return result;
+    public List<User> search() {
+        return null;
     }
 }
