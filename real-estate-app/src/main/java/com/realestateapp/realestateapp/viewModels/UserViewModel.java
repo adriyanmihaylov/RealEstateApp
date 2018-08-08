@@ -16,7 +16,7 @@ public class UserViewModel {
 
     public String email;
 
-    public Set<PostSimpleViewModel> userPosts;
+    public Set<PropertySimpleViewModel> userPosts;
 
     public static UserViewModel fromModel(User user) {
         UserViewModel vm = new UserViewModel();
@@ -25,9 +25,9 @@ public class UserViewModel {
         vm.firstName = user.getFirstName();
         vm.lastName = user.getLastName();
         vm.email = user.getEmail();
-        vm.userPosts = user.getUserPosts()
+        vm.userPosts = user.getUserProperties()
             .stream()
-            .map(PostSimpleViewModel::fromModel)
+            .map(PropertySimpleViewModel::fromModel)
             .collect(Collectors.toSet());
 
         return vm;
