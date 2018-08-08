@@ -44,10 +44,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> search() throws InterruptedException {
-<<<<<<< HEAD
+
         return userRepository.search();
-=======
-        return null;
->>>>>>> c6aa7d3242afd0a32f8d456ff0ab8a571404a50a
+
     }
 }
