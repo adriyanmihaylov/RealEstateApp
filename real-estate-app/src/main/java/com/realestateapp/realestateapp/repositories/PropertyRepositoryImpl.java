@@ -3,7 +3,6 @@ package com.realestateapp.realestateapp.repositories;
 import com.realestateapp.realestateapp.models.Property;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.realestateapp.realestateapp.repositories.base.PropertyRepository;
 
@@ -34,7 +33,7 @@ public class PropertyRepositoryImpl implements PropertyRepository {
 
 
     @Override
-    public Property findById(long id) {
+    public Property getById(int id) {
         Property property = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -80,8 +79,8 @@ public class PropertyRepositoryImpl implements PropertyRepository {
     }
 
     @Override
-    public boolean deleteById(long id) {
-        Property property = findById(id);
+    public boolean deleteById(int id) {
+        Property property = getById(id);
         if (property != null) {
             try (Session session = factory.openSession()) {
                 session.beginTransaction();

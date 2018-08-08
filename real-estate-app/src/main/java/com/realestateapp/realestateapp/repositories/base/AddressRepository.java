@@ -5,14 +5,13 @@ import com.realestateapp.realestateapp.models.Address;
 import java.util.List;
 
 public interface AddressRepository {
-    List<Address> listAll();
+    List<Address> getAll();
 
-    Address findById(long id);
+    Address getById(int id);
 
     void create(Address address) throws Exception;
 
     void update(Address address);
 
-    void delete(long id);
+    void delete(int id);
 }
-

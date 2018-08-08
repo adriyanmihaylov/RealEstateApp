@@ -6,13 +6,13 @@ import com.realestateapp.realestateapp.models.Address;
 import java.util.List;
 
 public interface AddressService {
-    List<Address> findAll();
+    List<Address> getAll();
 
-    Address findById(long id);
+    Address getById(int id);
 
-    void create(Address ads) throws Exception;
+    void create(Address ads);
 
     void edit(Address ads);
 
-    void deleteById(long id) throws Exception;
+    void deleteById(int id);
 }

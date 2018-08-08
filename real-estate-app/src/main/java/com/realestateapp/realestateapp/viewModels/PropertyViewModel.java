@@ -11,21 +11,21 @@ public class PropertyViewModel {
 
     public String description;
 
-    private Date date;
+    public Date date;
 
-    private int size;
+    public int size;
 
-    private int bedrooms;
+    public int bedrooms;
 
-    private int baths;
+    public int baths;
 
-    private int price;
+    public int price;
 
-    private Material material;
+    public Material material;
 
-    private Type type;
+    public Type type;
 
-    private Address address;
+    public Address address;
 
     public UserSimpleViewModel author;
 

@@ -16,13 +16,13 @@ public class PropertiesServiceImpl implements PropertiesService {
     }
 
     @Override
-    public List<Property> findAll() {
+    public List<Property> getAll() {
         return repository.getAll();
     }
 
     @Override
-    public Property findById(long id) {
-        return repository.findById(id);
+    public Property getById(int id) {
+        return repository.getById(id);
     }
 
     @Override
@@ -35,27 +35,23 @@ public class PropertiesServiceImpl implements PropertiesService {
         return repository.update(ad);
     }
 
-    @Override
-    public boolean deleteById(long id) {
-        return repository.deleteById(id);
-    }
+//    @Override
+//    public boolean deleteById(int id) {
+//        return repository.deleteById(id);
+//    }
 
     @Override
     public List<Property> find(String address, String material, String type, String priceFrom, String priceTo, String baths, String bedrooms, String size) {
         return repository.find(address, material, type, priceFrom, priceTo, baths, bedrooms, size);
     }
 
-//    @Override
-//    public List<Property> search(String address, String material, String type, int priceFrom, int priceTo, int baths, int bedrooms) {
-//        return null;
-//    }
 
-    @Override
-    public List<Property> findLatestSix() {
-        List<Property> allProperties = repository.getAll();
-        if (allProperties.size() < 6) {
-            return allProperties;
-        }
-        return allProperties.subList(allProperties.size() - 6, allProperties.size());
-    }
+//    @Override
+//    public List<Property> findLatestSix() {
+//        List<Property> allProperties = repository.getAll();
+//        if (allProperties.size() < 6) {
+//            return allProperties;
+//        }
+//        return allProperties.subList(allProperties.size() - 6, allProperties.size());
+//    }
 }

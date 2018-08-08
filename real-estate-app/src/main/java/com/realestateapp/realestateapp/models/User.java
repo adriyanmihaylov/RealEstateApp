@@ -16,7 +16,7 @@ public class User implements Comparable<User> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private long id;
+    private int id;
 
     @Column(name = "username")
     @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
@@ -37,11 +37,8 @@ public class User implements Comparable<User> {
 
     @OneToMany(mappedBy = "author",
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-
+            cascade = CascadeType.ALL) 
        private Set<Property> userProperties;
-
-
     public User() {
     }
 
@@ -58,11 +55,11 @@ public class User implements Comparable<User> {
 //        setUserProperties(userProperties);
 //    }
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
