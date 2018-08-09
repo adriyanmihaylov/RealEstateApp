@@ -1,5 +1,7 @@
 package com.realestateapp.realestateapp.services;
 
+import com.realestateapp.realestateapp.models.Role;
+import com.realestateapp.realestateapp.repositories.base.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.realestateapp.realestateapp.models.User;
@@ -10,12 +12,8 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
-
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public List<User> getAll() {
@@ -25,6 +23,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(int id) {
         return userRepository.getById(id);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return userRepository.getByUsername(username);
     }
 
     @Override

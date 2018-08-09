@@ -29,6 +29,7 @@ public class UserController {
     @GetMapping("/register")
     public String userRegister(Model model) {
         model.addAttribute("view", "users/register");
+//        model.addAttribute("user",new User());
 
         return "base";
     }

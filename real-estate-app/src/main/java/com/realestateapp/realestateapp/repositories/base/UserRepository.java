@@ -14,4 +14,6 @@ public interface UserRepository {
     boolean update(User user);
 
     boolean deleteById(int id);
+
+    User getByUsername(String username);
 }

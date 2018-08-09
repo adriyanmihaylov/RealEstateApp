@@ -20,6 +20,7 @@ public class Configuration {
                 .addAnnotatedClass(Property.class)
                 .addAnnotatedClass(Address.class)
                 .addAnnotatedClass(Material.class)
+                .addAnnotatedClass(Role.class)
                 .addAnnotatedClass(Type.class)
                 .buildSessionFactory();
     }

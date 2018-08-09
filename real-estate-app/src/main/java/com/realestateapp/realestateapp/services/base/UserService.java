@@ -9,6 +9,8 @@ public interface UserService {
 
     User getById(int id);
 
+    User getByUsername(String username);
+
     boolean create(User user);
 
     boolean update(User user);

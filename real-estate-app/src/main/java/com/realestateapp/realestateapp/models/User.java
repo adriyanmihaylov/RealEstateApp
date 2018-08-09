@@ -1,11 +1,9 @@
 package com.realestateapp.realestateapp.models;
 
-//import org.hibernate.search.annotations.TermVector;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
-
-        import javax.persistence.*;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -23,7 +21,7 @@ public class User implements Comparable<User> {
     private String username;
 
     @Column(name = "password")
-    private String passwordHash;
+    private String password;
 
     @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
     @Column(name = "FirstName")
@@ -39,21 +37,21 @@ public class User implements Comparable<User> {
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
        private Set<Property> userProperties;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "RoleID")
+    private Role role;
+
     public User() {
     }
 
     public User(String username, String password, String email, String firstName, String lastName) {
         setUsername(username);
-        setPasswordHash(password);
+        setPassword(password);
         setEmail(email);
         setFirstName(firstName);
         setLastName(lastName);
     }
-
-//    public User(String username, String password, String email, String firstName, String lastName, Set<Property> userProperties) {
-//        this(username, password, email, firstName, lastName);
-//        setUserProperties(userProperties);
-//    }
 
     public int getId() {
         return this.id;
@@ -71,12 +69,12 @@ public class User implements Comparable<User> {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEmail(String email) {
@@ -111,12 +109,12 @@ public class User implements Comparable<User> {
         return userProperties;
     }
 
-    public void addUserAds(Property add) {
-        if (!userProperties.contains(add)) {
-            userProperties.add(add);
-        } else {
-            System.out.println("Add already exists for this user");
-        }
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role roles) {
+        this.role = roles;
     }
 
     @Override
@@ -124,7 +122,7 @@ public class User implements Comparable<User> {
         return "User: " +
                 "id=" + id +
                 ", username= " + username +
-                ", passwordHash=" + passwordHash +
+                ", password=" + password +
                 ", email=" + email +
                 ", fullName=" + firstName + " " + lastName;
     }

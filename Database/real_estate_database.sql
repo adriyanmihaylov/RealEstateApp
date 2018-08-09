@@ -69,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `properties` (
   KEY `FK_properties_materials` (`MaterialID`),
   KEY `FK_properties_addresses` (`AddressID`),
   KEY `FK_properties_types` (`TypeID`),
-  CONSTRAINT `FK_properties_addresses` FOREIGN KEY (`AddressId`) REFERENCES `addresses` (`Id`),
+  CONSTRAINT `FK_properties_addresses` FOREIGN KEY (`AddressID`) REFERENCES `addresses` (`Id`),
   CONSTRAINT `FK_properties_materials` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`Id`),
-  CONSTRAINT `FK_properties_types` FOREIGN KEY (`TypeId`) REFERENCES `types` (`Id`),
+  CONSTRAINT `FK_properties_types` FOREIGN KEY (`TypeID`) REFERENCES `types` (`Id`),
   CONSTRAINT `FK_properties_users` FOREIGN KEY (`UserID`) REFERENCES `users` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -81,6 +81,20 @@ INSERT INTO `properties` (`Id`, `Title`, `Description`, `Date`, `UserID`, `Size`
 	(1, 'Post1', 'Mladost 2 Bedrooms Apartment ', '2018-08-03 14:14:34', 2, 130, 3, 1, 120000, 1, 3, 1),
 	(2, 'Post2', 'House in Musagenitsa', '2018-05-03 14:14:45', 1, 200, 2, 2, 150000, 2, 2, 6);
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
+
+-- Dumping structure for table real_estate.role
+CREATE TABLE IF NOT EXISTS `role` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Role` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table real_estate.role: ~2 rows (approximately)
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` (`Id`, `Role`) VALUES
+	(1, 'ADMIN\r\n'),
+	(2, 'USER');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
 -- Dumping structure for table real_estate.types
 CREATE TABLE IF NOT EXISTS `types` (
@@ -105,17 +119,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(45) COLLATE utf8_czech_ci NOT NULL,
   `firstName` varchar(45) COLLATE utf8_czech_ci NOT NULL,
   `lastName` varchar(45) COLLATE utf8_czech_ci NOT NULL,
+  `RoleID` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
+  UNIQUE KEY `email` (`email`),
+  KEY `FK_users_role` (`RoleID`),
+  CONSTRAINT `FK_users_role` FOREIGN KEY (`RoleID`) REFERENCES `role` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 -- Dumping data for table real_estate.users: ~3 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`Id`, `username`, `email`, `password`, `firstName`, `lastName`) VALUES
-	(1, 'janidrenchev', 'jani@abv.bg', '123456', 'Jani', 'Drenchev'),
-	(2, 'adriyan', 'adriyan@yahoo.com', '123456', 'Adriyan', 'Mihaylov'),
-	(3, 'testUsername', 'testusername@abv.bg', '123456', 'TestFirstName', 'TestSecondName');
+INSERT INTO `users` (`Id`, `username`, `email`, `password`, `firstName`, `lastName`, `RoleID`) VALUES
+	(1, 'janidrenchev', 'jani@abv.bg', '123456', 'Jani', 'Drenchev', 1),
+	(2, 'adriyan', 'adriyan@yahoo.com', '123456', 'Adriyan', 'Mihaylov', 1),
+	(3, 'testUsername', 'testusername@abv.bg', '123456', 'TestFirstName', 'TestSecondName', 2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

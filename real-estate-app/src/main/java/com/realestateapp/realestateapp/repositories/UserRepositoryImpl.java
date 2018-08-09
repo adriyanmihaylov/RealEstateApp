@@ -1,7 +1,11 @@
 package com.realestateapp.realestateapp.repositories;
 
+import com.realestateapp.realestateapp.models.Role;
+import com.realestateapp.realestateapp.repositories.base.RoleRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.realestateapp.realestateapp.models.User;
@@ -56,6 +60,11 @@ public class UserRepositoryImpl implements UserRepository {
         }
 
         try (Session session = factory.openSession()) {
+            Role role = new Role("USER");
+            role.setId(2);
+            user.setRole(role);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(user.getPassword()));
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
@@ -107,4 +116,21 @@ public class UserRepositoryImpl implements UserRepository {
         return false;
     }
 
+    @Override
+    public User getByUsername(String name) {
+        List<User> users = new ArrayList<>();
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            String query = String.format("FROM User u WHERE u.username LIKE '%s'",name);
+            users = session.createQuery(query).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users.get(0);
+    }
 }
