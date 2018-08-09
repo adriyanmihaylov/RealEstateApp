@@ -127,9 +127,9 @@ public class PropertiesController {
                          Model model) {
         model.addAttribute("view", "properties/properties-list");
         List<Property> result;
-//        result = service.find(address, material, type, priceFrom , priceTo ,
-//                baths, bedrooms, size);
-        result = service.getAll();
+        result = service.find(address, material, type, priceFrom , priceTo ,
+                baths, bedrooms, size);
+
         model.addAttribute("result", result);
         return "base";
    }

@@ -19,6 +19,6 @@ public interface PropertiesService {
                         String type, String priceFrom, String priceTo, String baths, String bedrooms, String size);
 
     List<Property> findLatestSix();
-//=======
+
 //    boolean deleteById(int id) throws Exception;
 }

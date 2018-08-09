@@ -113,6 +113,6 @@ public class PropertyRepositoryImpl implements PropertyRepository {
 
 
         result = session.createQuery(querry).list();
-        return null;
+        return result;
     }
 }
