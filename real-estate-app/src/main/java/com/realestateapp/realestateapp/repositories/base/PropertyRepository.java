@@ -16,7 +16,7 @@ public interface PropertyRepository {
     boolean deleteById(long id);
 
     List<Property> find(String address, String material,
-                        String type, String priceFrom, String priceTo, String baths, String bedrooms, String size);
+                        String type, String sizeFrom, String sizeTo, String baths, String bedrooms);
 
     boolean deleteById(int id);
 

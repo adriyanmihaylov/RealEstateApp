@@ -16,7 +16,7 @@ public interface PropertiesService {
 //    boolean deleteById(long id) throws Exception;
 //
     List<Property> find(String address, String material,
-                        String type, String priceFrom, String priceTo, String baths, String bedrooms, String size);
+                        String type, String sizeFrom, String sizeTo, String baths, String bedrooms);
 
     List<Property> findLatestSix();
 
