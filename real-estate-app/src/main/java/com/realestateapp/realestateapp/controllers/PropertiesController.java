@@ -119,16 +119,15 @@ public class PropertiesController {
     public String search(@RequestParam(value = "address", required = false, defaultValue = "%") String address,
                              @RequestParam(value = "material", required = false, defaultValue = "%") String material,
                              @RequestParam(value = "type", required = false ,defaultValue = "%") String type,
-                             @RequestParam(value = "price", required = false, defaultValue = "0") String priceFrom,
-                             @RequestParam(value = "price", required = false, defaultValue = Integer.MAX_VALUE + "") String priceTo,
+                             @RequestParam(value = "sizeFrom", required = false, defaultValue = "0") String sizeFrom,
+                             @RequestParam(value = "sizeTo", required = false, defaultValue = Integer.MAX_VALUE + "") String sizeTo,
                              @RequestParam(value = "baths", required = false, defaultValue = "%") String baths,
                              @RequestParam(value = "bedrooms", required = false, defaultValue = "%") String bedrooms,
-                         @RequestParam(value = "size", required = false, defaultValue = "%") String size,
                          Model model) {
         model.addAttribute("view", "properties/properties-list");
         List<Property> result;
-        result = service.find(address, material, type, priceFrom , priceTo ,
-                baths, bedrooms, size);
+        result = service.find(address, material, type, sizeFrom , sizeTo ,
+                baths, bedrooms);
 
         model.addAttribute("result", result);
         return "base";

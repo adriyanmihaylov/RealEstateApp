@@ -41,8 +41,8 @@ public class PropertiesServiceImpl implements PropertiesService {
 //    }
 
     @Override
-    public List<Property> find(String address, String material, String type, String priceFrom, String priceTo, String baths, String bedrooms, String size) {
-        return repository.find(address, material, type, priceFrom, priceTo, baths, bedrooms, size);
+    public List<Property> find(String address, String material, String type, String sizeFrom, String sizeTo, String baths, String bedrooms) {
+        return repository.find(address, material, type, sizeFrom, sizeTo, baths, bedrooms);
     }
 
 

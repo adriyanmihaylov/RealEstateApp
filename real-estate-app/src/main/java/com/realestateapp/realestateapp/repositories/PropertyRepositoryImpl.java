@@ -102,14 +102,14 @@ public class PropertyRepositoryImpl implements PropertyRepository {
 
     @Override
     public List<Property> find(String address, String material,
-                               String type, String priceFrom, String priceTo, String baths, String bedrooms, String size) {
+                               String type, String sizeFrom, String sizeTo, String baths, String bedrooms) {
         Session session = factory.openSession();
         session.beginTransaction();
         List<Property> result;
         String querry = String.format("From Property p where " +
                         "p.address.name LIKE '%s' AND p.material.name LIKE '%s'" +
-                        " AND p.type.name LIKE '%s' AND p.price >= '%s' AND p.price <= '%s' AND p.baths LIKE '%s' AND p.bedrooms LIKE '%s' AND p.size LIKE '%s'",
-                address, material, type, priceFrom, priceTo, baths, bedrooms, size);
+                        " AND p.type.name LIKE '%s' AND p.size >= '%s' AND p.size <= '%s' AND p.baths LIKE '%s' AND p.bedrooms LIKE '%s'",
+                address, material, type, sizeFrom, sizeTo, baths, bedrooms);
 
 
         result = session.createQuery(querry).list();
