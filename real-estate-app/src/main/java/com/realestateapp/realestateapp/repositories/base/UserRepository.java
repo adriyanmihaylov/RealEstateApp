@@ -9,11 +9,13 @@ public interface UserRepository {
 
     User getById(int id);
 
+    User getByUsername(String username);
+
+    User getByEmail(String email);
+
     boolean create(User user);
 
     boolean update(User user);
 
     boolean deleteById(int id);
-
-    User getByUsername(String username);
 }

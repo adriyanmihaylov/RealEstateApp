@@ -1,7 +1,5 @@
 package com.realestateapp.realestateapp.services;
 
-import com.realestateapp.realestateapp.models.Role;
-import com.realestateapp.realestateapp.repositories.base.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.realestateapp.realestateapp.models.User;
@@ -43,5 +41,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteById(int id) {
         return userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean checkIfUsernameIsPresent(String username) {
+        return userRepository.getByUsername(username) != null;
+    }
+
+    @Override
+    public boolean checkIfEmailIsPresent(String email) {
+        return userRepository.getByEmail(email) != null;
     }
 }

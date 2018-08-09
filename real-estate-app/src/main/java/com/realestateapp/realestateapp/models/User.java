@@ -1,13 +1,9 @@
 package com.realestateapp.realestateapp.models;
 
-import org.hibernate.search.annotations.*;
-import org.hibernate.search.annotations.Index;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Indexed
 @Table(name = "users")
 public class User implements Comparable<User> {
 
@@ -17,13 +13,11 @@ public class User implements Comparable<User> {
     private int id;
 
     @Column(name = "username")
-    @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    @org.hibernate.search.annotations.Field(index = Index.YES, analyze = Analyze.YES)
     @Column(name = "FirstName")
     private String firstName;
 
@@ -45,10 +39,14 @@ public class User implements Comparable<User> {
     public User() {
     }
 
-    public User(String username, String password, String email, String firstName, String lastName) {
+    public User(String username,String password,String email) {
         setUsername(username);
         setPassword(password);
         setEmail(email);
+    }
+
+    public User(String username, String password, String email, String firstName, String lastName) {
+        this(username, password, email);
         setFirstName(firstName);
         setLastName(lastName);
     }
@@ -65,7 +63,7 @@ public class User implements Comparable<User> {
         return username;
     }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

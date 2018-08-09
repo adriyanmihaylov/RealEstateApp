@@ -51,6 +51,42 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User getByUsername(String name) {
+        List<User> users = new ArrayList<>();
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            String query = String.format("FROM User u WHERE u.username LIKE '%s'", name);
+            users = session.createQuery(query).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users.get(0);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        List<User> users = new ArrayList<>();
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            String query = String.format("FROM User u WHERE u.email LIKE '%s'", email);
+            users = session.createQuery(query).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users.get(0);
+    }
+
+    @Override
     public boolean create(User user) {
         List<User> allUsers = getAll();
 
@@ -114,23 +150,5 @@ public class UserRepositoryImpl implements UserRepository {
 
         System.out.println("User with id: " + id + " wasn't found!");
         return false;
-    }
-
-    @Override
-    public User getByUsername(String name) {
-        List<User> users = new ArrayList<>();
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            String query = String.format("FROM User u WHERE u.username LIKE '%s'",name);
-            users = session.createQuery(query).list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (users.isEmpty()) {
-            return null;
-        }
-        return users.get(0);
     }
 }

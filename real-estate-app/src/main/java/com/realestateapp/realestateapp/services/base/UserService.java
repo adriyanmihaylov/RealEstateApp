@@ -16,4 +16,8 @@ public interface UserService {
     boolean update(User user);
 
     boolean deleteById(int id);
+
+    boolean checkIfUsernameIsPresent(String username);
+
+    boolean checkIfEmailIsPresent(String email);
 }

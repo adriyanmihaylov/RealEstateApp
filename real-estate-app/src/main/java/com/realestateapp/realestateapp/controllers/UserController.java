@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,12 +29,51 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String userRegister(Model model) {
+    public String register(Model model) {
         model.addAttribute("view", "users/register");
-//        model.addAttribute("user",new User());
+        model.addAttribute("user",new User());
+        return "base";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@Valid User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "base";
+        }
+
+        if (service.checkIfUsernameIsPresent(user.getUsername())) {
+            model.addAttribute("view", "users/register");
+            model.addAttribute("usernameExist", true);
+
+            return "base";
+        }
+        if (service.checkIfEmailIsPresent(user.getEmail())) {
+            model.addAttribute("view", "users/register");
+            model.addAttribute("emailExist", true);
+
+            return "base";
+        }
+
+        service.create(user);
+        model.addAttribute("view", "home/index");
 
         return "base";
     }
+//    @PostMapping("/register")
+//    public String registerUser(@RequestParam(value = "username",required = false) String username,
+//                               @RequestParam(value = "email",required = false) String email,
+//                               @RequestParam(value = "password",required = false) String password,
+//                               Model model) {
+//        if (!service.checkIfUsernameIsPresent(username)) {
+//            User user = new User(username, password, email);
+//            service.create(user);
+//
+//            model.addAttribute("view", "home/index");
+//            return "base";
+//        }
+//        return "base";
+//    }
+
 
     @GetMapping("/login")
     public String userLogin(Model model) {
