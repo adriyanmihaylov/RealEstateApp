@@ -1,7 +1,6 @@
 package com.realestateapp.realestateapp.models;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "properties")
@@ -51,12 +50,15 @@ public class Property {
     private Address address;
 
 //    private List<String> photosUrls;
+    @Column(name = "imgSrc")
+    private String imgSrc;
 
     public Property() {
 
     }
 
-    public Property(Type type, String title, String description, int size, int bedrooms, int baths, int price, User author, Material material, Address address) {
+    public Property(Type type, String title, String description, int size, int bedrooms, int baths, int price, User author, Material material, Address address, String imgSrc) {
+        this.imgSrc = imgSrc;
         setType(type);
         setTitle(title);
         setDescription(description);
@@ -181,5 +183,13 @@ public class Property {
                 ", type=" + type +
                 ", address=" + address +
                 '}';
+    }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
 }

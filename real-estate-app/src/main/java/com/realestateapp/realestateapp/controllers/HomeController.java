@@ -12,10 +12,18 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    PropertiesService service;
+
+    @Autowired
+    public HomeController(PropertiesService service){
+        this.service = service;
+    }
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("view", "home/index");
-
+        List<Property> latest6 = service.findLatestSix();
+        System.out.println(latest6.get(0).getImgSrc());
+        model.addAttribute("latest6", latest6);
         return "base";
     }
 

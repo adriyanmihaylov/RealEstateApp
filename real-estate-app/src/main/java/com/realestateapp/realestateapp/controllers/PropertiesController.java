@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,10 +19,6 @@ public class PropertiesController {
     @Autowired
     private PropertiesService service;
 
-//    @GetMapping(value = "/search")
-//    public String searchProperties(Model model) {
-
-//    }
 
 
     //WORKING
@@ -43,13 +40,9 @@ public class PropertiesController {
             e.printStackTrace();
         }
 
+
         return property;
     }
-
-//    @RequestMapping(value = "/properties/latest", method = RequestMethod.GET)
-//    public List<Property> findLatestSix() {
-//        return service.findLatestSix();
-//    }
 
 
 //    //WORKING TRY WITH POST with http://localhost:8080/api/posts/create?title=AddNum1&description=Test1
@@ -133,10 +126,11 @@ public class PropertiesController {
                          @RequestParam(value = "size", required = false, defaultValue = "%") String size,
                          Model model) {
         model.addAttribute("view", "properties/properties-list");
-        List<Property> result = service.find(address, material, type, priceFrom , priceTo ,
-                baths, bedrooms, size);
+        List<Property> result;
+//        result = service.find(address, material, type, priceFrom , priceTo ,
+//                baths, bedrooms, size);
+        result = service.getAll();
         model.addAttribute("result", result);
         return "base";
-
    }
 }

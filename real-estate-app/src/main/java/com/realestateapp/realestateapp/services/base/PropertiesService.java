@@ -13,12 +13,12 @@ public interface PropertiesService {
 
     boolean update(Property property);
 
-//<<<<<<< HEAD
 //    boolean deleteById(long id) throws Exception;
 //
     List<Property> find(String address, String material,
                         String type, String priceFrom, String priceTo, String baths, String bedrooms, String size);
+
+    List<Property> findLatestSix();
 //=======
 //    boolean deleteById(int id) throws Exception;
-//>>>>>>> e0f6f64181884c78295a324626900e4ba1b8e4bb
 }

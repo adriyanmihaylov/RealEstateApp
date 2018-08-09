@@ -46,12 +46,12 @@ public class PropertiesServiceImpl implements PropertiesService {
     }
 
 
-//    @Override
-//    public List<Property> findLatestSix() {
-//        List<Property> allProperties = repository.getAll();
-//        if (allProperties.size() < 6) {
-//            return allProperties;
-//        }
-//        return allProperties.subList(allProperties.size() - 6, allProperties.size());
-//    }
+    @Override
+    public List<Property> findLatestSix() {
+        List<Property> allProperties = repository.getAll();
+        if (allProperties.size() < 6) {
+            return allProperties;
+        }
+        return allProperties.subList(allProperties.size() - 6, allProperties.size());
+    }
 }
