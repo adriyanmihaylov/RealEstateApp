@@ -77,7 +77,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String userLogin(Model model) {
-        model.addAttribute("view", "users/loginTest");
+        model.addAttribute("view", "users/login");
+        model.addAttribute("user",new User());
 
         return "base";
     }
