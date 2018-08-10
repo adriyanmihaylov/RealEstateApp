@@ -135,7 +135,8 @@ public class User implements Comparable<User> {
                 ", username= " + username +
                 ", password=" + password +
                 ", email=" + email +
-                ", fullName=" + firstName + " " + lastName;
+                ", fullName=" + firstName + " " + lastName +
+                ", role= " + this.getRole().getRole();
     }
 
     @Override
