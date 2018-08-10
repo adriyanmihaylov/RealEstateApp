@@ -103,23 +103,6 @@ INSERT INTO `role` (`Id`, `Role`, `name`) VALUES
 	(2, 'USER', '');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
--- Dumping structure for table real_estate.task
-CREATE TABLE IF NOT EXISTS `task` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `date` varchar(255) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `start_time` varchar(255) NOT NULL,
-  `stop_time` varchar(255) NOT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKegybiiy48edolpxof9xq44xiy` (`user_email`),
-  CONSTRAINT `FKegybiiy48edolpxof9xq44xiy` FOREIGN KEY (`user_email`) REFERENCES `user` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Dumping data for table real_estate.task: ~0 rows (approximately)
-/*!40000 ALTER TABLE `task` DISABLE KEYS */;
-/*!40000 ALTER TABLE `task` ENABLE KEYS */;
-
 -- Dumping structure for table real_estate.types
 CREATE TABLE IF NOT EXISTS `types` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -149,15 +132,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   KEY `FK_users_role` (`RoleID`),
   CONSTRAINT `FK_users_role` FOREIGN KEY (`RoleID`) REFERENCES `role` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
--- Dumping data for table real_estate.users: ~3 rows (approximately)
+-- Dumping data for table real_estate.users: ~6 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`Id`, `username`, `email`, `password`, `firstName`, `lastName`, `RoleID`) VALUES
 	(1, 'janidrenchev', 'jani@abv.bg', '123456', 'Jani', 'Drenchev', 1),
 	(2, 'adriyan', 'adriyan@yahoo.com', '123456', 'Adriyan', 'Mihaylov', 1),
 	(3, 'testUsername', 'testusername@abv.bg', '123456', 'TestFirstName', 'TestSecondName', 2),
-	(4, 'registered', 'registered@abv.bg', '$2a$10$TCDCZmrrhCbJSb7iymL40uX.UP/h5ko5LQoMjxOrkIkee610d9VAe', NULL, NULL, 1);
+	(4, 'registered', 'registered@abv.bg', '$2a$10$TCDCZmrrhCbJSb7iymL40uX.UP/h5ko5LQoMjxOrkIkee610d9VAe', NULL, NULL, 1),
+	(6, 'adriyanmihaylov', 'adriyanmihaylov@yahoo.com', '$2a$10$cjbe3O4vRl7hu2cvJj5wP.WLia0IOMTDOfwAYlCQggLUHRhgyded6', NULL, NULL, 2),
+	(7, 'user', 'user@yahoo.com', '$2a$10$XiVNc9WVKAY8zg9VuvXAEutzS01CQ5CsEocv0QN497.fw5wBxRiBi', NULL, NULL, 2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table real_estate.user_roles
