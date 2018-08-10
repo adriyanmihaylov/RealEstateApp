@@ -25,14 +25,14 @@
                   <div class="card card-list">
                      <a href="#">
                         <span class="badge badge-success">For Sale</span>
-                        <img class="card-img-top" alt="Card image cap" src="http://localhost:8080/img/list/1.png">
+                        <img class="card-img-top" alt="Card image cap" th:src="${latest.imgSrc}">
                         <div class="card-body">
                            <h5 class="card-title"></h5>
                            <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker" th:text="${latest.address.name}"></i></h6>
 
                            <h2 class="text-success mb-0 mt-3" th:text=" '$' + ${latest.price}">
 
-                           </h2>
+                           </h2>  
                         </div>
                         <div class="card-footer">
                            <span><i class="mdi mdi-sofa"></i> Beds : <strong th:text="${latest.bedrooms}"></strong></span>
