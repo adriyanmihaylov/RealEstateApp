@@ -48,14 +48,14 @@
                         <li sec:authorize="isAuthenticated()" class="list-inline-item">
                             <div class="btn btn-link btn-sm" sec:authentication="name"></div>
                         </li>
-                       <li class="list-inline-item">
+                       <li sec:authorize="{isAnonymous()}" class="list-inline-item">
                           <a class="btn btn-link btn-sm" th:href="@{/login}">Sign In</a>
                        </li>
-                       <li class="list-inline-item">
+                       <li sec:authorize="{isAnonymous()}" class="list-inline-item">
                           <a class="btn btn-success btn-sm" th:href="@{/register}">Sign Up</a>
                        </li>
                         <li sec:authorize="isAuthenticated()" class="list-inline-item">
-                            <a class="btn btn-success btn-sm" th:action="@{/users/logout}">Sign out (<span sec:authentication="principal.username"/>)</a>
+                            <a class="btn btn-success btn-sm" th:action="@{/users/logout}">Sign out</a>
                         </li>
                     </ul>
                  </div>
