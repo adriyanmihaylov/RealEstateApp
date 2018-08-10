@@ -44,6 +44,13 @@ public class PropertiesController {
         return property;
     }
 
+    @GetMapping("/add-new")
+    public String create(Model model) {
+        model.addAttribute("view","properties/add-property");
+
+        return "base";
+    }
+
 
 //    //WORKING TRY WITH POST with http://localhost:8080/api/posts/create?title=AddNum1&description=Test1
 //    @RequestMapping(value = "/properties/create", method = RequestMethod.POST)
