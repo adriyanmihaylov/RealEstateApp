@@ -1,6 +1,12 @@
 package com.realestateapp.realestateapp.models;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,9 +18,11 @@ public class User implements Comparable<User> {
     @Column(name = "Id")
     private int id;
 
-    @Column(name = "username")
+    @NotNull
+    @Column(name = "username",unique = true)
     private String username;
 
+    @Size(min = 6)
     @Column(name = "password")
     private String password;
 
@@ -24,7 +32,9 @@ public class User implements Comparable<User> {
     @Column(name = "LastName")
     private String lastName;
 
-    @Column(name = "email")
+    @NotNull
+    @Email
+    @Column(name = "email",unique = true)
     private String email;
 
     @OneToMany(mappedBy = "author",
@@ -37,6 +47,9 @@ public class User implements Comparable<User> {
     private Role role;
 
     public User() {
+
+    }
+    public User(String username, String password, List<GrantedAuthority> grantList) {
     }
 
     public User(String username,String password,String email) {

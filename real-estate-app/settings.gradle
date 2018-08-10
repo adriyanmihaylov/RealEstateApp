@@ -1,1 +1,4 @@
 rootProject.name = 'real-estate-app'
+
+include 'auth-server'
+include 'oauth2login'

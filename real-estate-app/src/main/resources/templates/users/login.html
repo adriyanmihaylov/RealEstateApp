@@ -23,14 +23,14 @@
                   <div class="card padding-card">
                      <div class="card-body">
                         <h5 class="card-title mb-4">Login</h5>
-                        <form>
+                        <form th:action="@{/login}" id="login" th:method="post">
                            <div class="form-group">
-                              <label>Username <span class="text-danger">*</span></label>
-                              <input type="text" class="form-control" placeholder="Username">
+                              <label for="username">Username <span class="text-danger">*</span></label>
+                              <input type="text" class="form-control" required="required" id="username" placeholder="Username">
                            </div>
                            <div class="form-group">
-                              <label>Password <span class="text-danger">*</span></label>
-                              <input type="password" class="form-control" placeholder="Password">
+                              <label for="password">Password <span class="text-danger">*</span></label>
+                              <input type="password" class="form-control" required="required" id="password"  placeholder="Password">
                            </div>
                            <div class="form-group">
                               <div class="custom-control custom-checkbox">
@@ -38,7 +38,7 @@
                                  <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
                               </div>
                            </div>
-                           <button type="submit" class="btn btn-success btn-block">SIGN IN</button>
+                           <button type="submit" form="login" class="btn btn-success btn-block">SIGN IN</button>
                         </form>
                         <div class="mt-4 text-center">
                            <a th:href="@{/forget}">Forget your password?</a>

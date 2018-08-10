@@ -56,7 +56,7 @@ public class UserController {
 
         service.create(user);
         model.addAttribute("view", "home/index");
-
+        model.addAttribute("registrationSuccess",true);
         return "base";
     }
 //    @PostMapping("/register")
@@ -77,7 +77,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String userLogin(Model model) {
-        model.addAttribute("view", "users/login");
+        model.addAttribute("view", "users/loginTest");
 
         return "base";
     }
@@ -89,7 +89,7 @@ public class UserController {
         return "base";
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/account")
     public String userProfile(Model model) {
         model.addAttribute("view", "users/user-profile");
 

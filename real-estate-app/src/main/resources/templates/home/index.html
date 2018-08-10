@@ -1,6 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
    <body>
+   <div layout:fragment="content" class="container mySpace">
+      <div class="alert alert-info" th:if="${registrationSuccess}">
+         <p class="text text-center">
+            Registration success!
+         </p>
+      </div>
+   </div>
       <!-- Map -->
       <section class="osahan-slider">
          <div id="map"></div>

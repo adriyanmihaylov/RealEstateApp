@@ -26,14 +26,20 @@ repositories {
 
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-thymeleaf",
+            "org.springframework.boot:spring-boot-starter-security",
+            "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.security:spring-security-oauth2-client",
+            "org.springframework.security:spring-security-oauth2-jose",
+            "org.thymeleaf.extras:thymeleaf-extras-springsecurity4",
+            "org.springframework:spring-webflux",
+            "io.projectreactor.ipc:reactor-netty",
+            "org.hibernate.validator:hibernate-validator",
+            "org.apache.tomcat.embed:tomcat-embed-el"
     compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.3.2.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '8.0.36'
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.2.RELEASE'
-    compile("org.hibernate.validator:hibernate-validator")
-    compile("org.apache.tomcat.embed:tomcat-embed-el")
 }
