@@ -2,7 +2,9 @@ package com.realestateapp.realestateapp.controllers;
 
 import com.realestateapp.realestateapp.models.*;
 
+import com.realestateapp.realestateapp.services.base.AddressService;
 import com.realestateapp.realestateapp.viewModels.PropertyViewModel;
+import com.sun.media.sound.SoftTuning;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.realestateapp.realestateapp.services.base.PropertiesService;
@@ -11,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.jws.WebParam;
+import javax.validation.Valid;
+import java.security.Principal;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +23,6 @@ import java.util.stream.Collectors;
 public class PropertiesController {
     @Autowired
     private PropertiesService service;
-
 
 
     //WORKING
@@ -47,7 +51,21 @@ public class PropertiesController {
     @GetMapping("/add-new")
     public String create(Model model) {
         model.addAttribute("view","properties/add-property");
+        model.addAttribute("property", new NewProperty());
+        return "base";
+    }
 
+    @PostMapping("/add-new")
+    public String createProperty(@Valid NewProperty property, Model model, Principal principal) {
+        model.addAttribute("view","properties/add-property");
+        model.addAttribute("property", new NewProperty());
+        Type newType = new Type(property.getType());
+        Address newAddress = new Address(property.getAddress());
+        User newUser = new User(principal.getName());
+        Property newProperty = new Property(newType, property.getTitle(), property.getDescription(),
+                property.getSize(), property.getBedrooms(), property.getBaths(),
+                property.getPrice(), newUser, null, newAddress, "");
+        service.create(newProperty);
         return "base";
     }
 

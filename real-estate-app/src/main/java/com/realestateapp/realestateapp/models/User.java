@@ -63,6 +63,10 @@ public class User implements Comparable<User> {
         setFirstName(firstName);
         setLastName(lastName);
     }
+    public User(String username){
+        this.username= username;
+    }
+
 
     public int getId() {
         return this.id;

@@ -1,6 +1,8 @@
 package com.realestateapp.realestateapp.repositories;
 
 import com.realestateapp.realestateapp.models.Property;
+import com.realestateapp.realestateapp.models.User;
+import com.realestateapp.realestateapp.repositories.base.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -12,9 +14,10 @@ import java.util.List;
 @Repository
 public class PropertyRepositoryImpl implements PropertyRepository {
     private static SessionFactory factory;
-
-    public PropertyRepositoryImpl(SessionFactory factory) {
+    private  UserRepository userRepository;
+    public PropertyRepositoryImpl(SessionFactory factory, UserRepository repository) {
         this.factory = factory;
+        this.userRepository = repository;
     }
 
     @Override
@@ -50,6 +53,14 @@ public class PropertyRepositoryImpl implements PropertyRepository {
     public boolean create(Property newProperty) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
+            session.save(newProperty.getAddress());
+            session.save(newProperty.getType());
+            System.out.println(newProperty.getAuthor().getUsername());
+            User user = userRepository.getByUsername(newProperty.getAuthor().getUsername());
+            System.out.println(user.getEmail());
+            System.out.println(user.getUsername());
+
+            newProperty.setAuthor(user);
             session.save(newProperty);
             session.getTransaction().commit();
             System.out.println("CREATED: Property Id:" + newProperty.getId());

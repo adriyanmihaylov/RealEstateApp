@@ -55,7 +55,7 @@
                           <a class="btn btn-success btn-sm" th:href="@{/register}">Sign Up</a>
                        </li>
                         <li sec:authorize="isAuthenticated()" class="list-inline-item">
-                            <a class="btn btn-success btn-sm"  th:action="@{/logout}" method="post">Sign out</a>
+                            <a class="btn btn-success btn-sm"  th:href="@{/logout}" method="post">Sign out</a>
                         </li>
                     </ul>
                  </div>

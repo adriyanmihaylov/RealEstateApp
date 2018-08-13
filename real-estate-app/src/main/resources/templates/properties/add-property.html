@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
    <head>
    </head>
    <body>
@@ -24,88 +24,88 @@
          <div class="container">
             <div class="row">
                <div class="col-lg-8 col-md-8 mx-auto">
-                  <form>
+                  <form th:action="@{/add-new}" th:object="${property}" method="POST">
                      <div class="card padding-card">
                         <div class="card-body">
                            <h5 class="card-title mb-4">Property Description</h5>
                            <div class="form-group">
                               <label>Property Title <span class="text-danger">*</span></label>
-                              <input type="text" class="form-control" placeholder="Enter Full Name">
+                              <input type="text" class="form-control" placeholder="Enter Full Name" th:field="*{title}">
                            </div>
                            <div class="form-group">
                               <label>Property Description <span class="text-danger">*</span></label>
-                              <textarea class="form-control" rows="4"></textarea>
+                              <textarea class="form-control" rows="4" th:field="*{description}"></textarea>
                            </div>
                            <div class="row">
                               <div class="form-group col-md-4">
                                  <label>Type <span class="text-danger">*</span></label>
-                                 <select class="form-control custom-select">
-                                    <option>Select Type</option>
-                                    <option>Type 1</option>
-                                    <option>Type 2</option>
-                                    <option>Type 3</option>
+                                 <select class="form-control custom-select" th:field="*{type}">
+                                    <option value="1">Select Type</option>
+                                    <option value="2">Apartment</option>
+                                    <option value="3">House</option>
+                                    <option value="4">Garage</option>
                                  </select>
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Status <span class="text-danger">*</span></label>
-                                 <select class="form-control custom-select">
-                                    <option>Select Status</option>
-                                    <option>Type 1</option>
-                                    <option>Type 2</option>
-                                    <option>Type 3</option>
+                                 <select class="form-control custom-select" th:field="*{status}">
+                                    <option value="Select">Select Status</option>
+                                    <option value="For Rent">For Rent</option>
+                                    <option value="For Sale">For Sale</option>
+                                    <option value="Searching">Searching</option>
                                  </select>
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Location <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Location">
+                                 <input type="text" class="form-control" placeholder="Enter Location" th:field="*{address}">
                               </div>
                            </div>
                            <div class="row">
                               <div class="form-group col-md-4">
                                  <label>Bedrooms <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Bedrooms">
+                                 <input type="text" class="form-control" placeholder="Enter Bedrooms" th:field="*{bedrooms}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Bathrooms <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Bathrooms">
+                                 <input type="text" class="form-control" placeholder="Enter Bathrooms" th:field="*{baths}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Floors <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Floors">
+                                 <input type="text" class="form-control" placeholder="Enter Floors" th:field="*{floors}">
                               </div>
                            </div>
                            <div class="row">
                               <div class="form-group col-md-4">
                                  <label>Garages <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Garages">
+                                 <input type="text" class="form-control" placeholder="Enter Garages" th:field="*{garages}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Area <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="sq ft">
+                                 <input type="text" class="form-control" placeholder="sq ft" th:field="*{area}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Size <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="sq ft">
+                                 <input type="text" class="form-control" placeholder="sq ft" th:field="*{size}">
                               </div>
                            </div>
                            <div class="row">
                               <div class="form-group col-md-4">
                                  <label>Sale of Rent Price <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Rent Price">
+                                 <input type="text" class="form-control" placeholder="Enter Rent Price" th:field="*{price}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>Before Price Label<span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Price Label">
+                                 <input type="text" class="form-control" placeholder="Enter Price Label" th:field="*{BeforePriceLabel}">
                               </div>
                               <div class="form-group col-md-4">
                                  <label>After Price Label <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Price Label">
+                                 <input type="text" class="form-control" placeholder="Enter Price Label" th:field="*{AfterPriceLabel}">
                               </div>
                            </div>
                            <div class="row">
                               <div class="form-group col-md-6">
                                  <label>Property ID <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" placeholder="Enter Property ID">
+                                 <input type="text" class="form-control" placeholder="Enter Property ID" th:field="*{propertyId}">
                               </div>
                               <div class="form-group col-md-6">
                                  <label>Video URL</label>
